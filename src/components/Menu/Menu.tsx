@@ -70,6 +70,13 @@ const Menu: FC<Props> = ({}) => {
             style={{ marginInline: 16, marginBottom: 16 }}
           />
           <MenuItem
+            title="Nearby Stations"
+            active={pathname === "/nearby"}
+            navigateTo="/nearby"
+            icon={undefined}
+            style={{ marginInline: 16, marginBottom: 16 }}
+          />
+          <MenuItem
             title="My Profile"
             active={pathname === `/profile/${currentUser?.uid}`}
             navigateTo={`/profile/${currentUser?.uid}`}

@@ -34,7 +34,7 @@ const History: FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <IonHeader slot="fixed">
-          <IonToolbar style={{ background: "transparent" }}>
+          <IonToolbar>
             <IonButtons slot="start">
               <IonBackButton defaultHref="/home" />
             </IonButtons>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 import { Redirect, Route } from "react-router-dom"
@@ -40,6 +40,7 @@ import "@ionic/react/css/display.css"
 /* Theme variables */
 import "./theme/variables.css"
 import "./utils/styles.css"
+import NearbyStations from "./pages/NearbyStations/NearbyStations"
 
 const App: React.FC = () => {
   const { auth, authObj, currentUser, updateUser, records } = useAuth()
@@ -63,6 +64,8 @@ const App: React.FC = () => {
   //   { endpoint: "/history", exact: true, component: <History /> },
   //   { endpoint: "/settings", exact: true, component: <Settings /> },
   // ]
+
+  const routerRef = useRef<HTMLIonRouterOutletElement | null>(null)
 
   return (
     <AuthContext.Provider value={authObj}>
@@ -112,6 +115,9 @@ const App: React.FC = () => {
                   <Route path="/history" exact={true}>
                     <History />
                   </Route>
+                  <Route path="/nearby" exact={true}>
+                    <NearbyStations router={routerRef.current} />
+                  </Route>
                   <Route path="/settings" exact={true}>
                     <Settings />
                   </Route>
@@ -148,6 +154,9 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="/history" exact={true}>
                   <Redirect to="/signin" />
+                </Route>
+                <Route path="/nearby" exact={true}>
+                  <Redirect to="signin" />
                 </Route>
                 <Route path="/settings" exact={true}>
                   <Redirect to="/signin" />
