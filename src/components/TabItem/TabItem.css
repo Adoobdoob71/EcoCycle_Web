@@ -1,0 +1,13 @@
+.tab_item_view {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab_item_view_active {
+  border-bottom: 1px solid var(--ion-color-primary);
+}
+
+.tab_item_view:active {
+  filter: brightness(0.7);
+}

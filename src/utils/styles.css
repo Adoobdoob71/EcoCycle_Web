@@ -1,0 +1,17 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.touch_opacity:active {
+  filter: brightness(0.7);
+}

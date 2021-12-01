@@ -1,0 +1,12 @@
+.menu_item {
+  background-color: var(--ion-card-background);
+  align-items: center;
+  padding-inline: 12px;
+  padding-block: 8px;
+  border-radius: 6px;
+  border: 2px solid var(--ion-color-medium);
+}
+
+.menu_item_active {
+  border-color: var(--ion-color-primary);
+}

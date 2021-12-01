@@ -1,0 +1,7 @@
+{
+  "name": "EcoCycle",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

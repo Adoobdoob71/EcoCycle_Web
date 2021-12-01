@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "EcoCycle",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

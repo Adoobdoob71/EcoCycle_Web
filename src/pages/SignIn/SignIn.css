@@ -1,0 +1,15 @@
+.google_button {
+  background-color: #3f7ee8;
+  padding-inline: 12px;
+  padding-block: 10px;
+  border-radius: 8px;
+  color: var(--ion-color-medium);
+}
+
+.github_button {
+  background-color: #000000;
+  padding-inline: 12px;
+  padding-block: 10px;
+  border-radius: 8px;
+  color: var(--ion-color-medium);
+}
