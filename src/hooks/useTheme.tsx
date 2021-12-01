@@ -20,6 +20,16 @@ const useTheme = () => {
       if (colorTheme === "dark") {
         setIsThemeDark(true)
         document.body.setAttribute("color-theme", "dark")
+      } else {
+        document
+          .getElementsByName("theme-color")
+          .item(0)
+          .setAttribute("content", "#FFFFFF")
+
+        document
+          .getElementsByName("apple-mobile-web-app-status-bar-style")
+          .item(0)
+          .setAttribute("content", "#FFFFFF")
       }
     } else {
       setIsThemeDark(prefersDark.matches)
@@ -37,6 +47,10 @@ const useTheme = () => {
       )
       document
         .getElementsByName("theme-color")
+        .item(0)
+        .setAttribute("content", event.matches ? "#1f1f1f" : "#FFFFFF")
+      document
+        .getElementsByName("apple-mobile-web-app-status-bar-style")
         .item(0)
         .setAttribute("content", event.matches ? "#1f1f1f" : "#FFFFFF")
     })

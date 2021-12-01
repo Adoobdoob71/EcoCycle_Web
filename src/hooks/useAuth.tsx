@@ -17,6 +17,7 @@ import { DAYS_TO_LOAD } from "../utils/constants"
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
   const [records, setRecords] = useState<RECORD[]>([])
   const [recycledTotal, setRecycledTotal] = useState(0)
   const [convertedRecords, setConvertedRecords] = useState<
@@ -28,6 +29,7 @@ function useAuth() {
   const updateUser = async (newUser: User) => setCurrentUser(newUser)
 
   useEffect(() => {
+    setLoading(true)
     const unsubAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         switch (user.providerData[0].providerId) {
@@ -44,6 +46,7 @@ function useAuth() {
       } else {
         setCurrentUser(null)
       }
+      setLoading(false)
     })
     return () => unsubAuth()
   }, [])
@@ -100,6 +103,7 @@ function useAuth() {
     records,
     recycledTotal,
     convertedRecords,
+    loading,
   }
 }
 

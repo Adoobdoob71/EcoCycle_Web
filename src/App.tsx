@@ -43,7 +43,7 @@ import "./utils/styles.css"
 import NearbyStations from "./pages/NearbyStations/NearbyStations"
 
 const App: React.FC = () => {
-  const { auth, authObj, currentUser, updateUser, records } = useAuth()
+  const { auth, authObj, currentUser, updateUser, records, loading } = useAuth()
   const { themeObj, isThemeDark, toggleTheme } = useTheme()
 
   // const routes: {
@@ -72,7 +72,26 @@ const App: React.FC = () => {
       <ThemeContext.Provider value={themeObj}>
         <IonApp>
           <IonReactRouter>
-            {currentUser ? (
+            {loading ? (
+              <div
+                className="row"
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100vh",
+                  width: "100vw",
+                  backgroundColor: isThemeDark ? "#121212" : "#FFFFFF",
+                }}>
+                <span
+                  style={{
+                    fontSize: 21,
+                    color: "var(--ion-color-primary)",
+                    fontWeight: "bold",
+                  }}>
+                  EcoCycle
+                </span>
+              </div>
+            ) : currentUser ? (
               <IonSplitPane contentId="main">
                 <Menu />
                 <IonRouterOutlet id="main">
