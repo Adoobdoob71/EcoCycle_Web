@@ -254,7 +254,7 @@ const Home: React.FC = () => {
                 avatar_url={currentUser?.photoURL}
                 progress={recycledTotal / RECYCLING_GOAL}
                 uid={currentUser?.uid}
-                style={{ marginBottom: 14, marginTop: 12 }}
+                style={{ marginTop: 12 }}
               />
               {loading ? (
                 <div
@@ -262,7 +262,6 @@ const Home: React.FC = () => {
                   style={{
                     justifyContent: "center",
                     alignItems: "center",
-                    height: 60,
                   }}>
                   <IonSpinner color="tertiary" />
                 </div>

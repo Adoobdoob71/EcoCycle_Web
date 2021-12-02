@@ -7,6 +7,8 @@ import {
   IonLabel,
   IonNote,
 } from "@ionic/react"
+import { Timestamp } from "firebase/firestore"
+import { DateTime } from "luxon"
 
 interface Props {
   style?: CSSProperties
@@ -14,9 +16,21 @@ interface Props {
   email: string
   photoURL: string
   uid: string
+  joinedOn: Timestamp
 }
 
-const Friend: FC<Props> = ({ style, displayName, email, photoURL, uid }) => {
+const Friend: FC<Props> = ({
+  style,
+  displayName,
+  email,
+  photoURL,
+  uid,
+  joinedOn,
+}) => {
+  const joinedOnString = DateTime.fromJSDate(joinedOn.toDate()).toFormat(
+    "yyyy/LL/dd"
+  )
+
   return (
     <IonItem
       style={{ ...style }}
@@ -27,7 +41,7 @@ const Friend: FC<Props> = ({ style, displayName, email, photoURL, uid }) => {
       </IonAvatar>
       <div className="column" style={{ flex: 1, marginInline: 12 }}>
         <IonLabel>{displayName}</IonLabel>
-        <IonNote>{email}</IonNote>
+        <IonNote>Joined on {joinedOnString}</IonNote>
       </div>
     </IonItem>
   )

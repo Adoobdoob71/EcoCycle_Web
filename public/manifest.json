@@ -1,21 +1,38 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "EcoCycle",
+  "name": "EcoCycle",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "description": "The Recycling App.",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "sizes": "64x64",
+      "type": "image/png"
     },
     {
       "src": "assets/icon/icon.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "screenshots" : [
+    {
+      "src": "assets/screenshots/Screenshot1.jpg",
+      "sizes": "1080x2254",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/screenshots/Screenshot2.jpg",
+      "sizes": "1080x2261",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/screenshots/Screenshot3.jpg",
+      "sizes": "1080x2247",
+      "type": "image/jpeg"
+    }
+  ]
 }

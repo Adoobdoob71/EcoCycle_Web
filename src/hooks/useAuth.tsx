@@ -32,17 +32,10 @@ function useAuth() {
     setLoading(true)
     const unsubAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        switch (user.providerData[0].providerId) {
-          case "google.com":
-            setCurrentUser(user)
-            break
-          case "github.com":
-            setCurrentUser({
-              ...user,
-              email: user.providerData[0].email,
-            })
-            break
-        }
+        setCurrentUser({
+          ...user,
+          email: user.providerData[0].email,
+        })
       } else {
         setCurrentUser(null)
       }

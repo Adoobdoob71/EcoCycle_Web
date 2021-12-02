@@ -26,6 +26,8 @@ import { Chart } from "../../components/."
 import { AuthContext } from "../../context/auth"
 import { useFollow } from "../../hooks/useFollow"
 import { RECYCLING_GOAL } from "../../utils/constants"
+import { DateTime } from "luxon"
+import { Timestamp } from "firebase/firestore"
 
 const Profile: FC = () => {
   const { uid } = useParams<{ uid: string }>()
@@ -46,6 +48,10 @@ const Profile: FC = () => {
     currentUser?.uid,
     uid
   )
+
+  const joinedOn = DateTime.fromJSDate(
+    (userData?.joinedOn || Timestamp.now()).toDate()
+  ).toFormat("yyyy/LL/dd")
 
   return (
     <IonPage>
@@ -112,7 +118,7 @@ const Profile: FC = () => {
                   </span>
                 </IonText>
                 <IonText color="medium">
-                  <span style={{ fontSize: 14 }}>{userData?.email}</span>
+                  <span style={{ fontSize: 14 }}>Joined on {joinedOn}</span>
                 </IonText>
               </div>
             </IonCard>
@@ -140,7 +146,7 @@ const Profile: FC = () => {
                     </IonText>
                   </div>
                   <IonText color="dark">
-                    <span>Items recycled</span>
+                    <span>Items recycled today</span>
                   </IonText>
                 </div>
               </div>
