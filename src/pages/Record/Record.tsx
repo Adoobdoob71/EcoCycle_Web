@@ -150,8 +150,7 @@ const Record: FC = () => {
             marginLeft: "50%",
             transform: "translate(-50%)",
             marginBottom: 24,
-          }}
-          mode="ios">
+          }}>
           Done
         </IonButton>
       </IonContent>

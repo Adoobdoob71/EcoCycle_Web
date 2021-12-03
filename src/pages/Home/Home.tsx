@@ -86,7 +86,7 @@ const Home: React.FC = () => {
               routerDirection="forward">
               <IonAvatar style={{ width: 36, height: 36 }}>
                 <IonImg
-                  src={currentUser?.photoURL ? currentUser?.photoURL : ""}
+                  src={currentUser?.photoURL || ""}
                   className="touch_opacity"
                 />
               </IonAvatar>
