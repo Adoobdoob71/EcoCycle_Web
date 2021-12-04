@@ -1,15 +1,33 @@
-import React from "react"
+import React, { Suspense, lazy } from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import reportWebVitals from "./reportWebVitals"
-import { setupConfig } from "@ionic/react"
+import { IonSpinner, setupConfig } from "@ionic/react"
+const App = lazy(() => import("./App"))
 
 setupConfig({ mode: "md" })
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            height: window.innerHeight,
+            width: window.innerWidth,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor:
+              localStorage.getItem("color-theme") === "dark"
+                ? "#121212"
+                : "#FFFFFF",
+          }}>
+          <IonSpinner style={{ color: "#44ffc1" }} />
+        </div>
+      }>
+      <App />
+    </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 )

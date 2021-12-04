@@ -17,14 +17,6 @@ import "@ionic/react/css/normalize.css"
 import "@ionic/react/css/structure.css"
 import "@ionic/react/css/typography.css"
 
-/* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css"
-import "@ionic/react/css/float-elements.css"
-import "@ionic/react/css/text-alignment.css"
-import "@ionic/react/css/text-transformation.css"
-import "@ionic/react/css/flex-utils.css"
-import "@ionic/react/css/display.css"
-
 /* Theme variables */
 import "./theme/variables.css"
 import "./utils/styles.css"
@@ -43,6 +35,18 @@ const NearbyStations = lazy(
   () => import("./pages/NearbyStations/NearbyStations")
 )
 
+// import Home from "./pages/Home/Home"
+// import Profile from "./pages/Profile/Profile"
+// import Friends from "./pages/Friends/Friends"
+// import Scan from "./pages/Scan/Scan"
+// import Settings from "./pages/Settings/Settings"
+// import SignIn from "./pages/SignIn/SignIn"
+// import Record from "./pages/Record/Record"
+// import History from "./pages/History/History"
+// import Search from "./pages/Search/Search"
+// import Results from "./pages/Search/Results/Results"
+// import NearbyStations from "./pages/NearbyStations/NearbyStations"
+
 const App: React.FC = () => {
   const { auth, authObj, currentUser, updateUser, records, loading } = useAuth()
   const { themeObj, isThemeDark, toggleTheme } = useTheme()
@@ -53,15 +57,18 @@ const App: React.FC = () => {
     <Suspense
       fallback={
         <div
-          className="row"
           style={{
+            display: "flex",
             justifyContent: "center",
             alignItems: "center",
             height: "100vh",
             width: "100vw",
-            backgroundColor: isThemeDark ? "#121212" : "#FFFFFF",
+            backgroundColor:
+              localStorage.getItem("color-theme") === "dark"
+                ? "#121212"
+                : "#FFFFFF",
           }}>
-          <IonSpinner color="primary" />
+          <IonSpinner style={{ color: "#44ffc1" }} />
         </div>
       }>
       <AuthContext.Provider value={authObj}>
@@ -70,22 +77,18 @@ const App: React.FC = () => {
             <IonReactRouter>
               {loading ? (
                 <div
-                  className="row"
                   style={{
-                    justifyContent: "center",
-                    alignItems: "center",
+                    display: "flex",
                     height: "100vh",
                     width: "100vw",
-                    backgroundColor: isThemeDark ? "#121212" : "#FFFFFF",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor:
+                      localStorage.getItem("color-theme") === "dark"
+                        ? "#121212"
+                        : "#FFFFFF",
                   }}>
-                  <span
-                    style={{
-                      fontSize: 21,
-                      color: "var(--ion-color-primary)",
-                      fontWeight: "bold",
-                    }}>
-                    EcoCycle
-                  </span>
+                  <IonSpinner style={{ color: "#44ffc1" }} />
                 </div>
               ) : currentUser ? (
                 <IonSplitPane contentId="main">

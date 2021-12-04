@@ -262,6 +262,7 @@ const Home: React.FC = () => {
                   style={{
                     justifyContent: "center",
                     alignItems: "center",
+                    marginTop: 12,
                   }}>
                   <IonSpinner color="tertiary" />
                 </div>
