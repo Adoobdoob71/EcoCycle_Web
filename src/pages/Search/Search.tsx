@@ -15,6 +15,7 @@ import {
 import { useSearch } from "../../hooks/useSearch"
 import { Friend, QueryHistory } from "../../components"
 import { useHistory } from "react-router-dom"
+import { Helmet } from "react-helmet"
 
 const Search: FC = () => {
   const {
@@ -30,6 +31,31 @@ const Search: FC = () => {
 
   return (
     <IonPage>
+      <Helmet>
+        <title>EcoCycle - Search</title>
+        <meta name="description" content="The Recycling App." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ecocycle.web.app/search" />
+        <meta property="og:title" content="EcoCycle - Search" />
+        <meta property="og:description" content="The Recycling App." />
+        <meta
+          property="og:image"
+          content="https://ecocycle.web.app/assets/icon/icon.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://ecocycle.web.app/search"
+        />
+        <meta name="twitter:title" content="EcoCycle - Search" />
+        <meta name="twitter:description" content="The Recycling App." />
+        <meta
+          property="twitter:image"
+          content="https://ecocycle.web.app/assets/icon/icon.png"
+        />
+      </Helmet>
       <IonContent fullscreen>
         <IonHeader slot="fixed">
           <IonToolbar>
@@ -67,8 +93,8 @@ const Search: FC = () => {
           ))}
           <IonListHeader>Users</IonListHeader>
           {users.length == 0 &&
-            [0, 0, 0].map(() => (
-              <IonItem>
+            [0, 0, 0].map((item, index) => (
+              <IonItem key={index}>
                 <IonSkeletonText
                   animated
                   style={{ width: 42, height: 42, borderRadius: 21 }}
@@ -87,8 +113,8 @@ const Search: FC = () => {
             users.map((item, index) => <Friend {...item} key={index} />)}
           <IonListHeader>Items</IonListHeader>
           {items.length == 0 &&
-            [0, 0, 0].map(() => (
-              <IonItem>
+            [0, 0, 0].map((item, index) => (
+              <IonItem key={index}>
                 <IonSkeletonText
                   animated
                   style={{ width: 42, height: 42, borderRadius: 21 }}

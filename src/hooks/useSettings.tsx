@@ -1,13 +1,20 @@
 import React, { useContext, useEffect, useState } from "react"
 import { signOut, getAuth } from "firebase/auth"
 import { useIonToast } from "@ionic/react"
-import { ToggleChangeEventDetail, CheckboxChangeEventDetail } from "@ionic/core"
+import {
+  ToggleChangeEventDetail,
+  CheckboxChangeEventDetail,
+  SelectChangeEventDetail,
+} from "@ionic/core"
 import { ThemeContext } from "../context/theme"
+import { RECYCLING_GOAL } from "../utils/constants"
 
 function useSettings() {
   const { isThemeDark, toggleTheme } = useContext(ThemeContext)
   const [themeSwitchChecked, setThemeSwitchChecked] = useState(isThemeDark)
   const [saveHistoryChecked, setSaveHistoryChecked] = useState(true)
+  const [recyclingGoal, setRecyclingGoal] = useState(RECYCLING_GOAL)
+
   const [present, dismiss] = useIonToast()
 
   const signOutOfAccount = async () => {
@@ -57,6 +64,14 @@ function useSettings() {
     }
   }
 
+  const onRecycleGoalChange = (
+    event: CustomEvent<SelectChangeEventDetail<any>>
+  ) => {
+    setRecyclingGoal(event.detail.value)
+    localStorage.setItem("recycling_goal", event.detail.value)
+    window.location.reload()
+  }
+
   useEffect(() => {
     readSaveHistory()
   }, [])
@@ -68,6 +83,8 @@ function useSettings() {
     saveHistoryChecked,
     saveHistoryChange,
     clearSearchHistory,
+    recyclingGoal,
+    onRecycleGoalChange,
   }
 }
 

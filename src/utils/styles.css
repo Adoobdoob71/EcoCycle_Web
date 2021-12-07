@@ -15,3 +15,8 @@
 .touch_opacity:active {
   filter: brightness(0.7);
 }
+
+ion-select::part(placeholder) {
+  color: var(--ion-color-dark);
+  opacity: 1;
+}

@@ -15,6 +15,7 @@ import { useLocation } from "react-router-dom"
 import { MenuItem } from ".."
 import { AuthContext } from "../../context/auth"
 import { ThemeContext } from "../../context/theme"
+import { useDimensions } from "../../hooks/useDimensions"
 
 interface Props {}
 
@@ -23,6 +24,7 @@ const Menu: FC<Props> = ({}) => {
 
   const { currentUser } = useContext(AuthContext)
   const { isThemeDark, toggleTheme } = useContext(ThemeContext)
+  const { height } = useDimensions()
 
   const openGithub = () =>
     window.open("https://github.com/Adoobdoob71/EcoCycle_Web", "_blank")
@@ -87,7 +89,7 @@ const Menu: FC<Props> = ({}) => {
         <div
           className="row"
           style={{
-            marginTop: "100%",
+            marginTop: height - 435,
             justifyContent: "flex-end",
             alignItems: "center",
             alignSelf: "stretch",

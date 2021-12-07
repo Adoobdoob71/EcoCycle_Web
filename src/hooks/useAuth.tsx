@@ -63,20 +63,23 @@ function useAuth() {
       const unsubFirestore = onSnapshot(refQuery, (value) => {
         setRecords([])
         setRecycledTotal(0)
-        value.docs.reverse().forEach((item) => {
-          setRecords((records) => [...records, item.data() as RECORD])
-          if (timestamp.toMillis() < item.data().submittedOn.toMillis())
-            setRecycledTotal(
-              (recycledTotal) => recycledTotal + item.data().items
-            )
-        })
+        value.docs
+          .reverse()
+          .forEach((item) =>
+            setRecords((records) => [...records, item.data() as RECORD])
+          )
       })
       return () => unsubFirestore()
     }
   }, [currentUser])
 
   useEffect(() => {
-    setConvertedRecords(orderRecordArray(records))
+    const convRecs = orderRecordArray(records)
+    setConvertedRecords(convRecs)
+    if (convRecs)
+      setRecycledTotal(
+        convRecs.reduce((prev, current) => prev + current.items, 0)
+      )
   }, [records])
 
   const authObj = {

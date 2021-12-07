@@ -20,32 +20,33 @@ import "@ionic/react/css/typography.css"
 /* Theme variables */
 import "./theme/variables.css"
 import "./utils/styles.css"
+import { Helmet } from "react-helmet"
 
-const Home = lazy(() => import("./pages/Home/Home"))
-const Profile = lazy(() => import("./pages/Profile/Profile"))
-const Friends = lazy(() => import("./pages/Friends/Friends"))
-const Scan = lazy(() => import("./pages/Scan/Scan"))
-const Settings = lazy(() => import("./pages/Settings/Settings"))
-const SignIn = lazy(() => import("./pages/SignIn/SignIn"))
-const Record = lazy(() => import("./pages/Record/Record"))
-const History = lazy(() => import("./pages/History/History"))
-const Search = lazy(() => import("./pages/Search/Search"))
-const Results = lazy(() => import("./pages/Search/Results/Results"))
-const NearbyStations = lazy(
-  () => import("./pages/NearbyStations/NearbyStations")
-)
+// const Home = lazy(() => import("./pages/Home/Home"))
+// const Profile = lazy(() => import("./pages/Profile/Profile"))
+// const Friends = lazy(() => import("./pages/Friends/Friends"))
+// const Scan = lazy(() => import("./pages/Scan/Scan"))
+// const Settings = lazy(() => import("./pages/Settings/Settings"))
+// const SignIn = lazy(() => import("./pages/SignIn/SignIn"))
+// const Record = lazy(() => import("./pages/Record/Record"))
+// const History = lazy(() => import("./pages/History/History"))
+// const Search = lazy(() => import("./pages/Search/Search"))
+// const Results = lazy(() => import("./pages/Search/Results/Results"))
+// const NearbyStations = lazy(
+//   () => import("./pages/NearbyStations/NearbyStations")
+// )
 
-// import Home from "./pages/Home/Home"
-// import Profile from "./pages/Profile/Profile"
-// import Friends from "./pages/Friends/Friends"
-// import Scan from "./pages/Scan/Scan"
-// import Settings from "./pages/Settings/Settings"
-// import SignIn from "./pages/SignIn/SignIn"
-// import Record from "./pages/Record/Record"
-// import History from "./pages/History/History"
-// import Search from "./pages/Search/Search"
-// import Results from "./pages/Search/Results/Results"
-// import NearbyStations from "./pages/NearbyStations/NearbyStations"
+import Home from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile"
+import Friends from "./pages/Friends/Friends"
+import Scan from "./pages/Scan/Scan"
+import Settings from "./pages/Settings/Settings"
+import SignIn from "./pages/SignIn/SignIn"
+import Record from "./pages/Record/Record"
+import History from "./pages/History/History"
+import Search from "./pages/Search/Search"
+import Results from "./pages/Search/Results/Results"
+import NearbyStations from "./pages/NearbyStations/NearbyStations"
 
 const App: React.FC = () => {
   const { auth, authObj, currentUser, updateUser, records, loading } = useAuth()
@@ -73,6 +74,28 @@ const App: React.FC = () => {
       }>
       <AuthContext.Provider value={authObj}>
         <ThemeContext.Provider value={themeObj}>
+          <Helmet>
+            <title>EcoCycle</title>
+            <meta name="description" content="The Recycling App." />
+
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://ecocycle.web.app" />
+            <meta property="og:title" content="EcoCycle" />
+            <meta property="og:description" content="The Recycling App." />
+            <meta
+              property="og:image"
+              content="https://ecocycle.web.app/assets/icon/icon.png"
+            />
+
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:url" content="https://ecocycle.web.app" />
+            <meta name="twitter:title" content="EcoCycle" />
+            <meta name="twitter:description" content="The Recycling App." />
+            <meta
+              property="twitter:image"
+              content="https://ecocycle.web.app/assets/icon/icon.png"
+            />
+          </Helmet>
           <IonApp>
             <IonReactRouter>
               {loading ? (

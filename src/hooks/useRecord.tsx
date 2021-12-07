@@ -83,6 +83,7 @@ function useRecord() {
 
   return {
     recordValue,
+    setRecordValue,
     records,
     decrementRecord,
     incrementRecord,

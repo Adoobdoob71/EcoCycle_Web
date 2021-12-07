@@ -17,6 +17,7 @@ import { useDimensions } from "./useDimensions"
 import { USER, RECORD } from "../utils/interfaces"
 import { AuthContext } from "../context/auth"
 import { DateTime } from "luxon"
+import { DAYS_TO_LOAD } from "../utils/constants"
 
 interface FRIENDS extends USER {
   records: RECORD[]
@@ -64,13 +65,13 @@ function useHome() {
       const result = await getDocs(q)
       Promise.all(
         result.docs.map(async (item) => {
-          const followedData = await getDoc(
-            doc(getFirestore(), "users", item.data().followedUID)
-          )
           const ref = doc(getFirestore(), "users", item.data()?.followedUID)
           const data = await getDoc(ref)
           const refCollection = collection(getFirestore(), "records")
-          const date = DateTime.now().startOf("day").toJSDate()
+          const date = DateTime.now()
+            .minus({ days: DAYS_TO_LOAD })
+            .startOf("day")
+            .toJSDate()
           const refQuery = query(
             refCollection,
             orderBy("submittedOn", "desc"),

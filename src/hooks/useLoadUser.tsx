@@ -76,12 +76,10 @@ function useLoadUser(uid: string) {
   useEffect(() => {
     const convRecs = orderRecordArray(records)
     setConvertedRecords(convRecs)
-    if (
-      convRecs &&
-      Timestamp.now().seconds - convRecs[convRecs.length - 1].date.seconds <
-        86400
-    )
-      setRecycledTotal(convRecs ? convRecs[convRecs.length - 1].items : 0)
+    if (convRecs)
+      setRecycledTotal(
+        convRecs.reduce((prev, current) => prev + current.items, 0)
+      )
   }, [records])
 
   return {

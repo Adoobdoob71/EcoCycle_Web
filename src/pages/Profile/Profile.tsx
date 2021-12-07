@@ -28,6 +28,7 @@ import { useFollow } from "../../hooks/useFollow"
 import { RECYCLING_GOAL } from "../../utils/constants"
 import { DateTime } from "luxon"
 import { Timestamp } from "firebase/firestore"
+import { Helmet } from "react-helmet"
 
 const Profile: FC = () => {
   const { uid } = useParams<{ uid: string }>()
@@ -55,8 +56,42 @@ const Profile: FC = () => {
 
   return (
     <IonPage>
-      <IonContent>
-        <IonHeader>
+      {userData && (
+        <Helmet>
+          <title>{userData.displayName}'s Profile</title>
+          <meta
+            name="title"
+            content={`EcoCycle - ${userData.displayName}'s Profile`}
+          />
+          <meta name="description" content="The Recycling App." />
+
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:url"
+            content={`https://ecocycle.web.app/profile/${userData.uid}`}
+          />
+          <meta
+            property="og:title"
+            content={`EcoCycle - ${userData.displayName}'s Profile`}
+          />
+          <meta property="og:description" content="The Recycling App." />
+          <meta property="og:image" content={userData.photoURL} />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            property="twitter:url"
+            content={`https://ecocycle.web.app/profile/${userData.uid}`}
+          />
+          <meta
+            property="twitter:title"
+            content={`EcoCycle - ${userData.displayName}'s Profile`}
+          />
+          <meta name="twitter:description" content="The Recycling App." />
+          <meta name="twitter:image" content={userData.photoURL} />
+        </Helmet>
+      )}
+      <IonContent fullscreen>
+        <IonHeader slot="fixed">
           <IonToolbar>
             <IonButtons slot="start">
               <IonBackButton defaultHref="/home" />
@@ -77,6 +112,7 @@ const Profile: FC = () => {
             )}
           </IonToolbar>
         </IonHeader>
+        <div style={{ height: 56 }}></div>
         <IonRefresher slot="fixed" onIonRefresh={loadProfile}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
@@ -146,7 +182,7 @@ const Profile: FC = () => {
                     </IonText>
                   </div>
                   <IonText color="dark">
-                    <span>Items recycled today</span>
+                    <span>Items recycled this week</span>
                   </IonText>
                 </div>
               </div>
