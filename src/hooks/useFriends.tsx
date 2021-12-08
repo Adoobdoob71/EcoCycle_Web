@@ -51,7 +51,7 @@ function useFriends() {
       const q = query(
         ref,
         orderBy("timestamp", "asc"),
-        startAfter(friends[friends.length - 1]),
+        startAfter(friends[friends.length - 1].joinedOn),
         limit(10)
       )
       const result = await getDocs(q)
@@ -63,7 +63,7 @@ function useFriends() {
           setFriends((friends) => [...friends, followedData.data() as USER])
         })
       )
-      event.target.complete()
+      event?.target.complete()
     } catch (error) {
       console.error(error)
     }

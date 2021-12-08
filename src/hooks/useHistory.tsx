@@ -10,12 +10,16 @@ import {
   orderBy,
   getDocs,
   limit,
+  Timestamp,
 } from "firebase/firestore"
+import { useIonToast } from "@ionic/react"
 
 function useHistory() {
   const [recordsArr, setRecordsArr] = useState<RECORD[]>([])
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false)
   const [checkboxVisible, setCheckboxVisible] = useState(false)
+
+  const [present, dismiss] = useIonToast()
 
   const { records, currentUser } = useContext(AuthContext)
 
@@ -26,16 +30,17 @@ function useHistory() {
       const q = query(
         ref,
         where("uid", "==", currentUser?.uid),
-        startAfter(recordsArr[recordsArr.length - 1]),
         orderBy("submittedOn", "desc"),
-        limit(5)
+        startAfter(
+          recordsArr[recordsArr.length - 1]?.submittedOn || Timestamp.now()
+        ),
+        limit(10)
       )
       const data = await getDocs(q)
       data.docs.forEach((item) =>
         setRecordsArr((recordsArr) => [...recordsArr, item.data() as RECORD])
       )
-
-      event.target.complete()
+      event?.target.complete()
     } catch (error) {
       console.error(error)
     }
@@ -43,8 +48,19 @@ function useHistory() {
 
   const toggleCheckboxVisible = () => setCheckboxVisible(!checkboxVisible)
 
+  const deleteRecords = async () => {
+    try {
+    } catch (error: any) {
+      present({
+        message: error?.message || "Something went wrong",
+        mode: "ios",
+        color: "danger",
+        duration: 2000,
+      })
+    }
+  }
   useEffect(() => {
-    setRecordsArr(records)
+    loadMoreRecords()
   }, [])
 
   return {
@@ -53,6 +69,7 @@ function useHistory() {
     loadMoreRecords,
     checkboxVisible,
     toggleCheckboxVisible,
+    deleteRecords,
   }
 }
 

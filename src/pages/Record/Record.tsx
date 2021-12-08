@@ -148,7 +148,7 @@ const Record: FC = () => {
                 </IonText>
               </div>
               <IonText color="dark">
-                <span>Items recycled today</span>
+                <span>Items recycled this week</span>
               </IonText>
             </div>
           </div>

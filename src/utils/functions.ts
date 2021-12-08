@@ -39,3 +39,21 @@ export const orderRecordArray = (recordsArr: RECORD[]) => {
 
 export const getConvertedTimestampFromDate = (date: Date) =>
   Timestamp.fromDate(DateTime.fromJSDate(date).startOf("day").toJSDate())
+
+export const calcDiff = (date: Timestamp, now: Timestamp) => {
+  let differenceInMins = (now.toMillis() - date.toMillis()) / 60000
+  let smallerThan60 = differenceInMins < 60
+  let smallerThan1440 = differenceInMins < 1440
+
+  if (differenceInMins <= 1) return "Just in!"
+
+  if (smallerThan60) return differenceInMins.toFixed(0) + " mins ago"
+
+  if (differenceInMins < 120 && differenceInMins > 60) return "An hour ago"
+
+  if (smallerThan1440) return (differenceInMins / 60).toFixed(0) + " hours ago"
+
+  if (differenceInMins < 2880 && differenceInMins > 1440) return "A day ago"
+
+  return (differenceInMins / 1440).toFixed(0) + " days ago"
+}

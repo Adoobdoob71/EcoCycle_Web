@@ -7,18 +7,18 @@ import {
   IonButtons,
   IonBackButton,
   IonTitle,
-  IonSegment,
-  IonSegmentButton,
-  IonText,
+  IonFooter,
   IonList,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonButton,
+  IonIcon,
 } from "@ionic/react"
 import { useDimensions } from "../../hooks/useDimensions"
 import { useHistory } from "../../hooks/useHistory"
 import { RecordItem } from "../../components"
 import { Helmet } from "react-helmet"
+import { pencil, trash } from "ionicons/icons"
 
 const History: FC = () => {
   const {
@@ -27,6 +27,7 @@ const History: FC = () => {
     isInfiniteDisabled,
     checkboxVisible,
     toggleCheckboxVisible,
+    deleteRecords,
   } = useHistory()
 
   const { width } = useDimensions()
@@ -62,13 +63,14 @@ const History: FC = () => {
               <IonBackButton defaultHref="/home" />
             </IonButtons>
             <IonTitle>History</IonTitle>
-            <IonButton
-              slot="end"
-              color="dark"
-              fill="clear"
-              onClick={toggleCheckboxVisible}>
-              Select
-            </IonButton>
+            <IonButtons slot="end">
+              <IonButton
+                color="dark"
+                fill="clear"
+                onClick={toggleCheckboxVisible}>
+                Select
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonList>
@@ -88,6 +90,37 @@ const History: FC = () => {
           </IonInfiniteScroll>
         </IonList>
       </IonContent>
+      {checkboxVisible && (
+        <IonFooter>
+          <IonToolbar>
+            <IonButtons style={{ paddingInline: 12 }}>
+              <IonButton
+                color="dark"
+                disabled={false}
+                fill="clear"
+                onClick={deleteRecords}
+                style={{ marginRight: 8 }}>
+                <IonIcon
+                  icon={trash}
+                  style={{ marginRight: 8, fontSize: 18 }}
+                />
+                Delete
+              </IonButton>
+              <IonButton
+                color="dark"
+                disabled={false}
+                fill="clear"
+                style={{ marginRight: 8 }}>
+                <IonIcon
+                  icon={pencil}
+                  style={{ marginRight: 8, fontSize: 18 }}
+                />
+                Edit
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonFooter>
+      )}
     </IonPage>
   )
 }

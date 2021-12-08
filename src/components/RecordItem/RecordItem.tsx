@@ -3,6 +3,8 @@ import { RECORD } from "../../utils/interfaces"
 import { IonItem, IonCheckbox, IonText, IonIcon, IonCard } from "@ionic/react"
 import { location } from "ionicons/icons"
 import { DateTime } from "luxon"
+import { calcDiff } from "../../utils/functions"
+import { Timestamp } from "firebase/firestore"
 
 interface Props extends RECORD {
   checkboxVisible: boolean
@@ -14,6 +16,9 @@ const RecordItem: FC<Props> = ({
   uid,
   checkboxVisible,
 }) => {
+  const now = Timestamp.now()
+  const timestamp = calcDiff(submittedOn, now)
+
   return (
     <IonCard
       className="row"
@@ -39,15 +44,22 @@ const RecordItem: FC<Props> = ({
             style={{ color: "#3880ff", fontSize: 14, marginInlineEnd: 8 }}
           />
           <IonText>
-            <span style={{ fontSize: 14, color: "#3880ff" }}>Location</span>
+            <span style={{ fontSize: 14, color: "#3880ff" }}>
+              1111 S. Figueroa Street
+            </span>
           </IonText>
         </div>
       </div>
-      <IonText color="medium">
-        <span style={{ fontSize: 16 }}>
-          {DateTime.fromJSDate(submittedOn.toDate()).toFormat("LLL dd")}
-        </span>
-      </IonText>
+      <div className="column" style={{ alignItems: "center" }}>
+        <IonText color="medium">
+          <span style={{ fontSize: 16 }}>
+            {DateTime.fromJSDate(submittedOn.toDate()).toFormat("LLL dd")}
+          </span>
+        </IonText>
+        <IonText color="medium">
+          <span style={{ fontSize: 12 }}>{timestamp}</span>
+        </IonText>
+      </div>
     </IonCard>
   )
 }
