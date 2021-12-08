@@ -1,5 +1,6 @@
-const RECYCLING_GOAL = JSON.parse(
-  localStorage.getItem("recycling_goal") || "20"
+const RECYCLING_GOAL = parseInt(
+  localStorage.getItem("recycling_goal") || "20",
+  10
 )
 
 const DAYS_TO_LOAD = 6

@@ -61,7 +61,7 @@ const Home: React.FC = () => {
         <meta name="twitter:title" content="EcoCycle - Home" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>

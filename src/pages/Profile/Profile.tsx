@@ -77,17 +77,15 @@ const Profile: FC = () => {
           <meta property="og:description" content="The Recycling App." />
           <meta property="og:image" content={userData.photoURL} />
 
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content="summary_large_image"></meta>
           <meta
-            property="twitter:url"
-            content={`https://ecocycle.web.app/profile/${userData.uid}`}
-          />
+            name="twitter:url"
+            content={`https://ecocycle.web.app/profile/${userData.uid}`}></meta>
           <meta
-            property="twitter:title"
-            content={`EcoCycle - ${userData.displayName}'s Profile`}
-          />
-          <meta name="twitter:description" content="The Recycling App." />
-          <meta name="twitter:image" content={userData.photoURL} />
+            name="twitter:title"
+            content={`EcoCycle - ${userData.displayName}'s Profile`}></meta>
+          <meta name="twitter:description" content="The Recycling App."></meta>
+          <meta name="twitter:image" content={userData.photoURL}></meta>
         </Helmet>
       )}
       <IonContent fullscreen>

@@ -48,14 +48,11 @@ const SignIn: FC = () => {
         />
 
         <meta name="twitter:card" content="summary" />
-        <meta
-          property="twitter:url"
-          content="https://ecocycle.web.app/signin"
-        />
+        <meta name="twitter:url" content="https://ecocycle.web.app/signin" />
         <meta name="twitter:title" content="EcoCycle - Sign In" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>

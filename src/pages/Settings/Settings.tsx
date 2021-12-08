@@ -52,14 +52,11 @@ const Settings: FC = () => {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://ecocycle.web.app/settings"
-        />
+        <meta name="twitter:url" content="https://ecocycle.web.app/settings" />
         <meta name="twitter:title" content="EcoCycle - Settings" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>
@@ -105,7 +102,7 @@ const Settings: FC = () => {
               </div>
               <IonSelect
                 value={recyclingGoal}
-                placeholder={recyclingGoal}
+                placeholder={`${recyclingGoal}`}
                 onIonChange={onRecycleGoalChange}
                 defaultValue={recyclingGoal}
                 slot="end">

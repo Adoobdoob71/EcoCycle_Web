@@ -45,14 +45,11 @@ const NearbyStations: FC<Props> = ({ router }) => {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://ecocycle.web.app/nearby"
-        />
+        <meta name="twitter:url" content="https://ecocycle.web.app/nearby" />
         <meta name="twitter:title" content="EcoCycle - Nearby Stations" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>

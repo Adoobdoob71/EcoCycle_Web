@@ -36,14 +36,11 @@ const Friends: FC = (props) => {
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://ecocycle.web.app/friends"
-        />
+        <meta name="twitter:url" content="https://ecocycle.web.app/friends" />
         <meta name="twitter:title" content="EcoCycle - Friends" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>

@@ -42,13 +42,13 @@ const Results: FC = () => {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
-          property="twitter:url"
+          name="twitter:url"
           content="https://ecocycle.web.app/search/results"
         />
         <meta name="twitter:title" content="EcoCycle - Results" />
         <meta name="twitter:description" content="The Recycling App." />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content="https://ecocycle.web.app/assets/icon/icon.png"
         />
       </Helmet>
