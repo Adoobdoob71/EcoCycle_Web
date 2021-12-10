@@ -36,7 +36,7 @@ const Menu: FC<Props> = ({}) => {
           className="row"
           style={{ alignItems: "center", paddingInline: 16, paddingBlock: 24 }}>
           <IonAvatar style={{ width: 46, height: 46 }}>
-            <IonImg src={currentUser?.photoURL ? currentUser?.photoURL : ""} />
+            <IonImg src={currentUser?.photoURL || ""} />
           </IonAvatar>
           <div className="column" style={{ flex: 1, marginInlineStart: 8 }}>
             <IonText color="dark">

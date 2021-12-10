@@ -13,6 +13,7 @@ import {
   IonInfiniteScrollContent,
   IonButton,
   IonIcon,
+  IonSpinner,
 } from "@ionic/react"
 import { useDimensions } from "../../hooks/useDimensions"
 import { useHistory } from "../../hooks/useHistory"
@@ -28,9 +29,13 @@ const History: FC = () => {
     checkboxVisible,
     toggleCheckboxVisible,
     deleteRecords,
+    checkedIds,
+    addId,
+    removeId,
+    loadingDelete,
   } = useHistory()
 
-  const { width } = useDimensions()
+  const { width, height } = useDimensions()
 
   return (
     <IonPage>
@@ -67,25 +72,43 @@ const History: FC = () => {
               <IonButton
                 color="dark"
                 fill="clear"
+                buttonType="icon"
                 onClick={toggleCheckboxVisible}>
-                Select
+                <IonIcon
+                  icon={pencil}
+                  slot="icon-only"
+                  style={{ fontSize: 18 }}
+                />
               </IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
         <IonList>
           <div style={{ height: 56 }}></div>
-          {recordsArr.map((item, index) => (
-            <RecordItem
-              {...item}
-              checkboxVisible={checkboxVisible}
-              key={index}
-            />
-          ))}
+          {loadingDelete ? (
+            <div
+              style={{
+                height: height - 56,
+                display: "grid",
+                placeItems: "center",
+              }}>
+              <IonSpinner color="primary" />
+            </div>
+          ) : (
+            recordsArr.map((item, index) => (
+              <RecordItem
+                {...item}
+                onCheck={() => addId(item.id)}
+                onRemove={() => removeId(item.id)}
+                checkboxVisible={checkboxVisible}
+                key={index}
+              />
+            ))
+          )}
           <IonInfiniteScroll
-            onIonInfinite={loadMoreRecords}
+            onIonInfinite={(event) => loadMoreRecords(event)}
             threshold="100px"
-            disabled={isInfiniteDisabled}>
+            disabled={loadingDelete || isInfiniteDisabled}>
             <IonInfiniteScrollContent loadingSpinner="circular"></IonInfiniteScrollContent>
           </IonInfiniteScroll>
         </IonList>
@@ -96,10 +119,9 @@ const History: FC = () => {
             <IonButtons style={{ paddingInline: 12 }}>
               <IonButton
                 color="dark"
-                disabled={false}
+                disabled={loadingDelete || checkedIds.length === 0}
                 fill="clear"
-                onClick={deleteRecords}
-                style={{ marginRight: 8 }}>
+                onClick={deleteRecords}>
                 <IonIcon
                   icon={trash}
                   style={{ marginRight: 8, fontSize: 18 }}
@@ -108,9 +130,9 @@ const History: FC = () => {
               </IonButton>
               <IonButton
                 color="dark"
-                disabled={false}
-                fill="clear"
-                style={{ marginRight: 8 }}>
+                style={{ marginLeft: "auto" }}
+                disabled={loadingDelete || checkedIds.length !== 1}
+                fill="clear">
                 <IonIcon
                   icon={pencil}
                   style={{ marginRight: 8, fontSize: 18 }}

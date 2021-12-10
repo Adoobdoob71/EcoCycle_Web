@@ -9,6 +9,10 @@ import {
   collection,
   limit,
   Timestamp,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore"
 import { RECORD } from "../utils/interfaces"
 import { DateTime } from "luxon"
@@ -30,8 +34,23 @@ function useAuth() {
 
   useEffect(() => {
     setLoading(true)
-    const unsubAuth = onAuthStateChanged(auth, (user) => {
+    const unsubAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const exists = await getDoc(doc(getFirestore(), "users", user.uid))
+        if (exists.exists())
+          await updateDoc(doc(getFirestore(), "users", user.uid), {
+            email: user.providerData[0].email,
+            photoURL: user.photoURL,
+            displayName: user.displayName,
+          })
+        else
+          await setDoc(doc(getFirestore(), "users", user.uid), {
+            email: user.providerData[0].email,
+            photoURL: user.photoURL,
+            displayName: user.displayName,
+            uid: user.uid,
+            joinedOn: Timestamp.now(),
+          })
         setCurrentUser({
           ...user,
           email: user.providerData[0].email,
@@ -66,7 +85,10 @@ function useAuth() {
         value.docs
           .reverse()
           .forEach((item) =>
-            setRecords((records) => [...records, item.data() as RECORD])
+            setRecords((records) => [
+              ...records,
+              { ...item.data(), id: item.id } as RECORD,
+            ])
           )
       })
       return () => unsubFirestore()

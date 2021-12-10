@@ -1,32 +1,29 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore"
 
 interface USER {
-  displayName: string;
-  email: string;
-  photoURL: string;
-  joinedOn: Timestamp;
-  uid: string;
+  displayName: string
+  email: string
+  photoURL: string
+  joinedOn: Timestamp
+  uid: string
 }
 
 interface RECORD {
-  uid: string;
-  items: number;
-  submittedOn: Timestamp;
+  id?: string
+  uid: string
+  items: number
+  submittedOn: Timestamp
 }
 
 interface NEWS {
-  source?: { id?: string; name?: string; };
-  author?: string;
-  title?: string;
-  description?: string;
-  url?: string;
-  urlToImage?: string;
-  publishedAt?: string;
-  content?: string;
+  source?: { id?: string; name?: string }
+  author?: string
+  title?: string
+  description?: string
+  url?: string
+  urlToImage?: string
+  publishedAt?: string
+  content?: string
 }
 
-export type {
-  USER,
-  RECORD,
-  NEWS
-}
+export type { USER, RECORD, NEWS }

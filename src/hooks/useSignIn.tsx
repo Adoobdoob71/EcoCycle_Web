@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from "react"
 import {
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
   GithubAuthProvider,
 } from "firebase/auth"
 import {
@@ -23,23 +23,7 @@ function useSignIn() {
 
   const signInGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider)
-      const exists = await getDoc(doc(getFirestore(), "users", result.user.uid))
-      console.log(result.user)
-      if (exists.exists())
-        await updateDoc(doc(getFirestore(), "users", result.user.uid), {
-          email: result.user.providerData[0].email,
-          photoURL: result.user.photoURL,
-          displayName: result.user.displayName,
-        })
-      else
-        await setDoc(doc(getFirestore(), "users", result.user.uid), {
-          email: result.user.providerData[0].email,
-          photoURL: result.user.photoURL,
-          displayName: result.user.displayName,
-          uid: result.user.uid,
-          joinedOn: Timestamp.now(),
-        })
+      signInWithRedirect(auth, googleProvider)
     } catch (error) {
       console.error(error)
     }
@@ -47,22 +31,7 @@ function useSignIn() {
 
   const signInGithub = async () => {
     try {
-      const result = await signInWithPopup(auth, githubProvider)
-      const exists = await getDoc(doc(getFirestore(), "users", result.user.uid))
-      if (exists.exists())
-        await updateDoc(doc(getFirestore(), "users", result.user.uid), {
-          email: result.user.providerData[0].email,
-          photoURL: result.user.photoURL,
-          displayName: result.user.displayName,
-        })
-      else
-        await setDoc(doc(getFirestore(), "users", result.user.uid), {
-          email: result.user.providerData[0].email,
-          photoURL: result.user.photoURL,
-          displayName: result.user.displayName,
-          uid: result.user.uid,
-          joinedOn: Timestamp.now(),
-        })
+      signInWithRedirect(auth, githubProvider)
     } catch (error) {
       console.error(error)
     }

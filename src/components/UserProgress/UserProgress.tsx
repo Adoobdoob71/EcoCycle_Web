@@ -27,7 +27,7 @@ const UserProgress: FC<Props> = ({
       style={{ ...style, alignItems: "center" }}
       onClick={openProfile}>
       <IonAvatar style={{ width: 32, height: 32 }}>
-        <IonImg src={avatar_url ? avatar_url : ""} />
+        <IonImg src={avatar_url || ""} />
       </IonAvatar>
       <div className="column" style={{ flex: 1, marginInlineStart: 12 }}>
         <IonText color="dark">

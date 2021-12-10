@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth"
 import {
   getFirestore,
   collection,
+  doc,
   query,
   where,
   startAfter,
@@ -11,6 +12,7 @@ import {
   getDocs,
   limit,
   Timestamp,
+  deleteDoc,
 } from "firebase/firestore"
 import { useIonToast } from "@ionic/react"
 
@@ -18,10 +20,12 @@ function useHistory() {
   const [recordsArr, setRecordsArr] = useState<RECORD[]>([])
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false)
   const [checkboxVisible, setCheckboxVisible] = useState(false)
+  const [checkedIds, setCheckedIds] = useState<{ id?: string }[]>([])
+  const [loadingDelete, setLoadingDelete] = useState(false)
 
   const [present, dismiss] = useIonToast()
 
-  const { records, currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   const ref = collection(getFirestore(), "records")
 
@@ -31,14 +35,17 @@ function useHistory() {
         ref,
         where("uid", "==", currentUser?.uid),
         orderBy("submittedOn", "desc"),
+        limit(10),
         startAfter(
           recordsArr[recordsArr.length - 1]?.submittedOn || Timestamp.now()
-        ),
-        limit(10)
+        )
       )
       const data = await getDocs(q)
       data.docs.forEach((item) =>
-        setRecordsArr((recordsArr) => [...recordsArr, item.data() as RECORD])
+        setRecordsArr((recordsArr) => [
+          ...recordsArr,
+          { ...item.data(), id: item.id } as RECORD,
+        ])
       )
       event?.target.complete()
     } catch (error) {
@@ -50,6 +57,19 @@ function useHistory() {
 
   const deleteRecords = async () => {
     try {
+      setLoadingDelete(true)
+      setCheckboxVisible(false)
+      if (checkedIds.length !== 0) {
+        await Promise.all(
+          checkedIds.map(
+            async ({ id }) =>
+              await deleteDoc(doc(getFirestore(), `records/${id}`))
+          )
+        )
+        setRecordsArr([])
+        await loadMoreRecords()
+        setLoadingDelete(false)
+      }
     } catch (error: any) {
       present({
         message: error?.message || "Something went wrong",
@@ -59,6 +79,13 @@ function useHistory() {
       })
     }
   }
+
+  const addId = (id?: string) =>
+    setCheckedIds((checkedIds) => [...checkedIds, { id: id }])
+
+  const removeId = (id?: string) =>
+    setCheckedIds((checkedIds) => checkedIds.filter((item) => item.id !== id))
+
   useEffect(() => {
     loadMoreRecords()
   }, [])
@@ -70,6 +97,10 @@ function useHistory() {
     checkboxVisible,
     toggleCheckboxVisible,
     deleteRecords,
+    checkedIds,
+    addId,
+    removeId,
+    loadingDelete,
   }
 }
 

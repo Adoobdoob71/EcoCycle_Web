@@ -8,12 +8,15 @@ import { Timestamp } from "firebase/firestore"
 
 interface Props extends RECORD {
   checkboxVisible: boolean
+  onCheck: () => void
+  onRemove: () => void
 }
 
 const RecordItem: FC<Props> = ({
   items,
   submittedOn,
-  uid,
+  onCheck,
+  onRemove,
   checkboxVisible,
 }) => {
   const now = Timestamp.now()
@@ -31,6 +34,9 @@ const RecordItem: FC<Props> = ({
       {checkboxVisible && (
         <IonCheckbox
           mode="md"
+          onIonChange={(event) => {
+            event.detail.checked ? onCheck() : onRemove()
+          }}
           style={{ marginInlineEnd: 16, marginInlineStart: 4 }}
         />
       )}
