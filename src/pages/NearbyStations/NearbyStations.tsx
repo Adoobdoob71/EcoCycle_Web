@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import { FC } from "react"
 import {
   IonPage,
   IonContent,
@@ -8,11 +8,9 @@ import {
   IonBackButton,
   IonTitle,
   IonFab,
-  IonFabButton,
   IonIcon,
   IonText,
   IonButton,
-  useIonModal,
   IonModal,
 } from "@ionic/react"
 import GoogleMapReact from "google-map-react"
@@ -89,13 +87,18 @@ const NearbyStations: FC<Props> = ({ router }) => {
           showBackdrop={false}
           isOpen={menuOpen}>
           <div
-            className="row"
+            className="column"
             style={{
               height: 300,
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "var(--ion-background-color)",
             }}>
+            <IonText color="dark" style={{ marginBottom: 8 }}>
+              <span style={{ fontSize: 14, fontWeight: "bold" }}>
+                Coming soon
+              </span>
+            </IonText>
             <IonButton color="tertiary" mode="md" onClick={toggleMenu}>
               Close
             </IonButton>

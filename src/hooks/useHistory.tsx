@@ -13,6 +13,7 @@ import {
   limit,
   Timestamp,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore"
 import { useIonToast } from "@ionic/react"
 
@@ -22,6 +23,8 @@ function useHistory() {
   const [checkboxVisible, setCheckboxVisible] = useState(false)
   const [checkedIds, setCheckedIds] = useState<{ id?: string }[]>([])
   const [loadingDelete, setLoadingDelete] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
+  const [editValue, setEditValue] = useState(0)
 
   const [present, dismiss] = useIonToast()
 
@@ -90,6 +93,10 @@ function useHistory() {
     loadMoreRecords()
   }, [])
 
+  const toggleShowEdit = () => setShowEdit(!showEdit)
+
+  const updateRecord = async () => {}
+
   return {
     recordsArr,
     isInfiniteDisabled,
@@ -101,6 +108,11 @@ function useHistory() {
     addId,
     removeId,
     loadingDelete,
+    showEdit,
+    toggleShowEdit,
+    editValue,
+    setEditValue,
+    updateRecord,
   }
 }
 

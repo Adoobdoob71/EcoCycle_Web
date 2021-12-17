@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react"
+import { FC, useContext } from "react"
 import {
   IonPage,
   IonContent,
@@ -32,16 +32,8 @@ import { Helmet } from "react-helmet"
 
 const Profile: FC = () => {
   const { uid } = useParams<{ uid: string }>()
-  const {
-    userData,
-    loading,
-    loadUser,
-    error,
-    records,
-    recycledTotal,
-    loadProfile,
-    convertedRecords,
-  } = useLoadUser(uid)
+  const { userData, loading, recycledTotal, loadProfile, convertedRecords } =
+    useLoadUser(uid)
 
   const { height } = useDimensions()
   const { currentUser } = useContext(AuthContext)
