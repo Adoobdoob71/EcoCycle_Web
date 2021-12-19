@@ -23,15 +23,16 @@ function useSearch() {
   const history = useHistory()
 
   const loadUsers = async () => {
-    setUsers([])
     if (queryString?.length !== 0) {
+      const lowerCase = queryString?.toLocaleLowerCase()
       const ref = collection(getFirestore(), "users")
       const q = query(
         ref,
-        where("displayName", ">=", queryString),
-        where("displayName", "<=", queryString + "\uf8ff"),
+        where("queryName", ">=", lowerCase),
+        where("queryName", "<=", lowerCase + "\uf8ff"),
         limit(5)
       )
+      setUsers([])
       const results = await getDocs(q)
       results.docs.forEach((item) =>
         setUsers((users) => [...users, item.data() as USER])
@@ -40,8 +41,6 @@ function useSearch() {
   }
 
   const loadItems = async () => {}
-
-  const loadNews = async () => {}
 
   const onChangeQuery = (event: CustomEvent<InputChangeEventDetail>) =>
     setQueryString(event.detail.value)
@@ -86,9 +85,11 @@ function useSearch() {
 
   useEffect(() => {
     readSearchHistory()
+  }, [])
+
+  useEffect(() => {
     loadUsers()
     loadItems()
-    loadNews()
   }, [queryString])
 
   return {

@@ -1,13 +1,27 @@
-import { useEffect, useRef, useState, lazy, Suspense } from "react"
+import { useRef, Suspense } from "react"
 import { IonApp, IonRouterOutlet, IonSplitPane, IonSpinner } from "@ionic/react"
 import { IonReactRouter } from "@ionic/react-router"
 import { Redirect, Route } from "react-router-dom"
+import { Helmet } from "react-helmet"
+
 import { AuthContext } from "./context/auth"
 import { ThemeContext } from "./context/theme"
 
 import { useTheme } from "./hooks/useTheme"
 import { useAuth } from "./hooks/useAuth"
+
 import { Menu } from "./components"
+
+import Home from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile"
+import Friends from "./pages/Friends/Friends"
+import Settings from "./pages/Settings/Settings"
+import SignIn from "./pages/SignIn/SignIn"
+import Record from "./pages/Record/Record"
+import History from "./pages/History/History"
+import Search from "./pages/Search/Search"
+import Results from "./pages/Search/Results/Results"
+import NearbyStations from "./pages/NearbyStations/NearbyStations"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css"
@@ -20,37 +34,10 @@ import "@ionic/react/css/typography.css"
 /* Theme variables */
 import "./theme/variables.css"
 import "./utils/styles.css"
-import { Helmet } from "react-helmet"
-
-// const Home = lazy(() => import("./pages/Home/Home"))
-// const Profile = lazy(() => import("./pages/Profile/Profile"))
-// const Friends = lazy(() => import("./pages/Friends/Friends"))
-// const Scan = lazy(() => import("./pages/Scan/Scan"))
-// const Settings = lazy(() => import("./pages/Settings/Settings"))
-// const SignIn = lazy(() => import("./pages/SignIn/SignIn"))
-// const Record = lazy(() => import("./pages/Record/Record"))
-// const History = lazy(() => import("./pages/History/History"))
-// const Search = lazy(() => import("./pages/Search/Search"))
-// const Results = lazy(() => import("./pages/Search/Results/Results"))
-// const NearbyStations = lazy(
-//   () => import("./pages/NearbyStations/NearbyStations")
-// )
-
-import Home from "./pages/Home/Home"
-import Profile from "./pages/Profile/Profile"
-import Friends from "./pages/Friends/Friends"
-import Scan from "./pages/Scan/Scan"
-import Settings from "./pages/Settings/Settings"
-import SignIn from "./pages/SignIn/SignIn"
-import Record from "./pages/Record/Record"
-import History from "./pages/History/History"
-import Search from "./pages/Search/Search"
-import Results from "./pages/Search/Results/Results"
-import NearbyStations from "./pages/NearbyStations/NearbyStations"
 
 const App: React.FC = () => {
-  const { auth, authObj, currentUser, updateUser, records, loading } = useAuth()
-  const { themeObj, isThemeDark, toggleTheme } = useTheme()
+  const { authObj, currentUser, loading } = useAuth()
+  const { themeObj } = useTheme()
 
   const routerRef = useRef<HTMLIonRouterOutletElement | null>(null)
 
@@ -117,15 +104,6 @@ const App: React.FC = () => {
                 <IonSplitPane contentId="main">
                   <Menu />
                   <IonRouterOutlet id="main">
-                    {/* {routes.map((item, index) => (
-                    <Route path={item.endpoint} exact={item?.exact} key={index}>
-                      {item.redirect ? (
-                        <Redirect to={item.redirect} />
-                      ) : (
-                        item.component
-                      )}
-                    </Route>
-                  ))} */}
                     <Route path="/" exact={true}>
                       <Redirect to="/home" />
                     </Route>
@@ -146,9 +124,6 @@ const App: React.FC = () => {
                     </Route>
                     <Route path="/profile/:uid">
                       <Profile />
-                    </Route>
-                    <Route path="/scan" exact={true}>
-                      <Scan />
                     </Route>
                     <Route path="/record" exact={true}>
                       <Record />
@@ -189,9 +164,6 @@ const App: React.FC = () => {
                   </Route>
                   <Route path="/profile/:uid">
                     <Profile />
-                  </Route>
-                  <Route path="/scan" exact={true}>
-                    <Redirect to="/signin" />
                   </Route>
                   <Route path="/record" exact={true}>
                     <Redirect to="/signin" />

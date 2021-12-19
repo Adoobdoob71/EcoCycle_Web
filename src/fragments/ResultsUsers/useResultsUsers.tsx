@@ -19,10 +19,11 @@ function useResultsUsers(queryString: string) {
 
   const getUsers = async () => {
     try {
+      const lowerCase = queryString.toLowerCase()
       const q = query(
         ref,
-        where("displayName", ">=", queryString),
-        where("displayName", "<=", queryString + "\uf8ff"),
+        where("queryName", ">=", lowerCase),
+        where("queryName", "<=", lowerCase + "\uf8ff"),
         limit(10)
       )
       const data = await getDocs(q)

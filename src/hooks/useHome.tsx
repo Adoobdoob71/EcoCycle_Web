@@ -26,30 +26,9 @@ interface FRIENDS extends USER {
 function useHome() {
   const [friends, setFriends] = useState<FRIENDS[]>([])
   const [loading, setLoading] = useState(true)
-  const [reorderDisabled, setReorderDisabled] = useState(true)
-  let order = [1, 2, 3]
 
   const { currentUser, records, recycledTotal, convertedRecords } =
     useContext(AuthContext)
-
-  const completeReorder = (event: CustomEvent<ItemReorderEventDetail>) => {
-    let indexMoved = order.splice(event.detail.from, 1)[0]
-    order.splice(event.detail.to, 0, indexMoved)
-    event.detail.complete()
-    localStorage.setItem("home_order", JSON.stringify(order))
-  }
-
-  const enableReorder = () => {
-    setReorderDisabled(true)
-    navigator.vibrate(50)
-  }
-
-  const disableReorder = () => setReorderDisabled(true)
-
-  const onLongPress = useLongPress(
-    reorderDisabled ? enableReorder : undefined,
-    1000
-  )
 
   const loadFriends = async () => {
     try {
@@ -101,11 +80,6 @@ function useHome() {
   const { width } = useDimensions()
 
   return {
-    reorderDisabled,
-    completeReorder,
-    enableReorder,
-    disableReorder,
-    onLongPress,
     records,
     width,
     currentUser,

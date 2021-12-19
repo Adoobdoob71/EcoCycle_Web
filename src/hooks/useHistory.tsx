@@ -23,8 +23,6 @@ function useHistory() {
   const [checkboxVisible, setCheckboxVisible] = useState(false)
   const [checkedIds, setCheckedIds] = useState<{ id?: string }[]>([])
   const [loadingDelete, setLoadingDelete] = useState(false)
-  const [showEdit, setShowEdit] = useState(false)
-  const [editValue, setEditValue] = useState(0)
 
   const [present, dismiss] = useIonToast()
 
@@ -50,7 +48,7 @@ function useHistory() {
           { ...item.data(), id: item.id } as RECORD,
         ])
       )
-      event?.target.complete()
+      event?.target?.complete()
     } catch (error) {
       console.error(error)
     }
@@ -70,6 +68,12 @@ function useHistory() {
           )
         )
         setRecordsArr([])
+        present({
+          message: "Record deleted successfully",
+          mode: "ios",
+          color: "success",
+          duration: 2000,
+        })
         await loadMoreRecords()
         setLoadingDelete(false)
       }
@@ -93,10 +97,6 @@ function useHistory() {
     loadMoreRecords()
   }, [])
 
-  const toggleShowEdit = () => setShowEdit(!showEdit)
-
-  const updateRecord = async () => {}
-
   return {
     recordsArr,
     isInfiniteDisabled,
@@ -108,11 +108,6 @@ function useHistory() {
     addId,
     removeId,
     loadingDelete,
-    showEdit,
-    toggleShowEdit,
-    editValue,
-    setEditValue,
-    updateRecord,
   }
 }
 

@@ -37,11 +37,6 @@ const History: FC = () => {
     addId,
     removeId,
     loadingDelete,
-    showEdit,
-    toggleShowEdit,
-    editValue,
-    setEditValue,
-    updateRecord,
   } = useHistory()
 
   const { width, height } = useDimensions()
@@ -140,7 +135,6 @@ const History: FC = () => {
               <IonButton
                 color="dark"
                 style={{ marginLeft: "auto" }}
-                onClick={toggleShowEdit}
                 disabled={loadingDelete || checkedIds.length !== 1}
                 fill="clear">
                 <IonIcon
@@ -153,38 +147,6 @@ const History: FC = () => {
           </IonToolbar>
         </IonFooter>
       )}
-      {/* <IonModal
-        mode="ios"
-        cssClass="nearby_stations_modal"
-        showBackdrop={true}
-        isOpen={showEdit}>
-        <div
-          className="column"
-          style={{
-            height: 300,
-            alignItems: "center",
-            justifyContent: "space-around",
-            backgroundColor: "var(--ion-card-background)",
-          }}>
-          <IonInput
-            value={editValue}
-            inputMode="numeric"
-            type="number"
-            className="edit_input"
-            onIonChange={(value) => {
-              let val = parseInt(value.detail.value!, 10)
-              if (isNaN(val)) {
-                setEditValue(0)
-                return
-              }
-              setEditValue(val)
-            }}
-          />
-          <IonButton mode="md" onClick={updateRecord}>
-            Done
-          </IonButton>
-        </div>
-      </IonModal> */}
     </IonPage>
   )
 }

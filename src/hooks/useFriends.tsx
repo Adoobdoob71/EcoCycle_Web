@@ -40,7 +40,7 @@ function useFriends() {
           setFriends((friends) => [...friends, followedData.data() as USER])
         })
       )
-      event.target.complete()
+      event?.target?.complete()
     } catch (error) {
       console.error(error)
     }
@@ -63,7 +63,7 @@ function useFriends() {
           setFriends((friends) => [...friends, followedData.data() as USER])
         })
       )
-      event?.target.complete()
+      event?.target?.complete()
     } catch (error) {
       console.error(error)
     }

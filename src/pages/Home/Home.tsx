@@ -27,12 +27,7 @@ import { RECYCLING_GOAL } from "../../utils/constants"
 const Home: React.FC = () => {
   const {
     currentUser,
-    completeReorder,
     records,
-    disableReorder,
-    enableReorder,
-    onLongPress,
-    reorderDisabled,
     width,
     recycledTotal,
     convertedRecords,
@@ -117,198 +112,154 @@ const Home: React.FC = () => {
           </div>
         </IonCard>
         <div style={{ height: 75 }}></div>
-        {!reorderDisabled && (
+
+        <IonCard
+          style={{ padding: 21, marginBottom: 16 }}
+          className="home_card"
+          mode="ios"
+          routerLink="/history"
+          routerDirection="forward">
           <div
             className="row"
             style={{
-              justifyContent: "space-between",
+              marginBottom: 12,
+              alignSelf: "stretch",
               alignItems: "center",
-              marginInline: 18,
-              marginTop: 16,
             }}>
-            <IonText color="medium">
-              <span style={{ fontSize: 16, fontWeight: "bold" }}>
-                Save Order Changes
+            <IonIcon icon={leaf} size="large" color="dark" />
+            <div className="column" style={{ flex: 1, alignItems: "flex-end" }}>
+              <div className="row" style={{ alignItems: "center" }}>
+                <IonText
+                  color={recycledTotal >= RECYCLING_GOAL ? "primary" : "dark"}>
+                  <span>{recycledTotal}</span>
+                </IonText>
+                <IonText color="primary">
+                  <span>/{RECYCLING_GOAL}</span>
+                </IonText>
+              </div>
+              <IonText color="dark">
+                <span>Items recycled this week</span>
+              </IonText>
+            </div>
+          </div>
+          <IonProgressBar
+            value={recycledTotal / RECYCLING_GOAL}
+            buffer={recycledTotal / RECYCLING_GOAL}
+            style={{ borderRadius: 8 }}></IonProgressBar>
+        </IonCard>
+        {convertedRecords ? (
+          <IonCard
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              paddingTop: 12,
+              marginBottom: 16,
+            }}
+            className="home_card"
+            mode="ios">
+            <IonText color="primary">
+              <span
+                style={{
+                  fontSize: 16,
+                  marginInline: 12,
+                  fontWeight: "bold",
+                }}>
+                Recycling History
+              </span>
+            </IonText>
+            <Chart data={convertedRecords} />
+          </IonCard>
+        ) : (
+          <IonCard
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingBlock: 40,
+              marginBottom: 16,
+            }}
+            className="home_card"
+            mode="ios">
+            <IonText color="disabled">
+              <span
+                style={{
+                  fontSize: 18,
+                  marginInline: 12,
+                  fontWeight: "bold",
+                }}>
+                No Data
               </span>
             </IonText>
             <IonButton
-              color="primary"
-              onClick={disableReorder}
-              mode="ios"
-              size="small">
-              Save
-            </IonButton>
-          </div>
-        )}
-        <IonReorderGroup
-          disabled={reorderDisabled}
-          onIonItemReorder={completeReorder}>
-          <IonReorder>
-            <IonCard
-              style={{ padding: 21, marginBottom: 16 }}
-              className="home_card"
-              mode="ios"
-              routerLink="/history"
+              fill="outline"
+              shape="round"
+              routerLink="/record"
               routerDirection="forward"
-              {...onLongPress}>
-              <div
-                className="row"
+              style={{ marginTop: 12 }}
+              mode="md">
+              Record Data
+            </IonButton>
+          </IonCard>
+        )}
+        <IonCard
+          style={{ paddingBlock: 16, paddingInline: 12 }}
+          className="home_card"
+          mode="ios">
+          <div className="row" style={{ alignItems: "center" }}>
+            <IonText color="primary">
+              <span
                 style={{
-                  marginBottom: 12,
-                  alignSelf: "stretch",
-                  alignItems: "center",
+                  fontSize: 16,
+                  fontWeight: "bold",
                 }}>
-                <IonIcon icon={leaf} size="large" color="dark" />
-                <div
-                  className="column"
-                  style={{ flex: 1, alignItems: "flex-end" }}>
-                  <div className="row" style={{ alignItems: "center" }}>
-                    <IonText
-                      color={
-                        recycledTotal >= RECYCLING_GOAL ? "primary" : "dark"
-                      }>
-                      <span>{recycledTotal}</span>
-                    </IonText>
-                    <IonText color="primary">
-                      <span>/{RECYCLING_GOAL}</span>
-                    </IonText>
-                  </div>
-                  <IonText color="dark">
-                    <span>Items recycled this week</span>
-                  </IonText>
-                </div>
-              </div>
-              <IonProgressBar
-                value={recycledTotal / RECYCLING_GOAL}
-                buffer={recycledTotal / RECYCLING_GOAL}
-                style={{ borderRadius: 8 }}></IonProgressBar>
-            </IonCard>
-          </IonReorder>
-          {convertedRecords ? (
-            <IonReorder>
-              <IonCard
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  paddingTop: 12,
-                  marginBottom: 16,
-                }}
-                className="home_card"
-                mode="ios"
-                {...onLongPress}>
-                <IonText color="primary">
-                  <span
-                    style={{
-                      fontSize: 16,
-                      marginInline: 12,
-                      fontWeight: "bold",
-                    }}>
-                    Recycling History
-                  </span>
-                </IonText>
-                <Chart data={convertedRecords} />
-              </IonCard>
-            </IonReorder>
+                You Vs Your Friends
+              </span>
+            </IonText>
+            <IonIcon
+              icon={refresh}
+              style={{ marginInlineStart: "auto", fontSize: 16 }}
+              color="dark"
+              className="touch_opacity"
+              onClick={loadFriends}
+            />
+          </div>
+          <UserProgress
+            full_name={currentUser?.displayName}
+            avatar_url={currentUser?.photoURL}
+            progress={recycledTotal / RECYCLING_GOAL}
+            uid={currentUser?.uid}
+            style={{ marginTop: 12 }}
+          />
+          {loading ? (
+            <div
+              className="row"
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 12,
+              }}>
+              <IonSpinner color="tertiary" />
+            </div>
           ) : (
-            <IonReorder>
-              <IonCard
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  paddingBlock: 40,
-                  marginBottom: 16,
-                }}
-                className="home_card"
-                mode="ios"
-                {...onLongPress}>
-                <IonText color="disabled">
-                  <span
-                    style={{
-                      fontSize: 18,
-                      marginInline: 12,
-                      fontWeight: "bold",
-                    }}>
-                    No Data
-                  </span>
-                </IonText>
-                <IonButton
-                  fill="outline"
-                  shape="round"
-                  routerLink="/record"
-                  routerDirection="forward"
-                  style={{ marginTop: 12 }}
-                  mode="md">
-                  Record Data
-                </IonButton>
-              </IonCard>
-            </IonReorder>
-          )}
-          <IonReorder>
-            <IonCard
-              style={{ paddingBlock: 16, paddingInline: 12 }}
-              // routerLink="/friends"
-              // routerDirection="forward"
-              className="home_card"
-              mode="ios"
-              {...onLongPress}>
-              <div className="row" style={{ alignItems: "center" }}>
-                <IonText color="primary">
-                  <span
-                    style={{
-                      fontSize: 16,
-                      fontWeight: "bold",
-                    }}>
-                    You Vs Your Friends
-                  </span>
-                </IonText>
-                <IonIcon
-                  icon={refresh}
-                  style={{ marginInlineStart: "auto", fontSize: 16 }}
-                  color="dark"
-                  className="touch_opacity"
-                  onClick={loadFriends}
-                />
-              </div>
+            friends.map((item, index) => (
               <UserProgress
-                full_name={currentUser?.displayName}
-                avatar_url={currentUser?.photoURL}
-                progress={recycledTotal / RECYCLING_GOAL}
-                uid={currentUser?.uid}
+                full_name={item.displayName}
+                avatar_url={item.photoURL}
+                progress={
+                  item.records.reduce(
+                    (previous, current) => previous + current.items,
+                    0
+                  ) / RECYCLING_GOAL
+                }
+                uid={item.uid}
                 style={{ marginTop: 12 }}
+                key={index}
               />
-              {loading ? (
-                <div
-                  className="row"
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: 12,
-                  }}>
-                  <IonSpinner color="tertiary" />
-                </div>
-              ) : (
-                friends.map((item, index) => (
-                  <UserProgress
-                    full_name={item.displayName}
-                    avatar_url={item.photoURL}
-                    progress={
-                      item.records.reduce(
-                        (previous, current) => previous + current.items,
-                        0
-                      ) / RECYCLING_GOAL
-                    }
-                    uid={item.uid}
-                    style={{ marginTop: 12 }}
-                    key={index}
-                  />
-                ))
-              )}
-            </IonCard>
-          </IonReorder>
-        </IonReorderGroup>
+            ))
+          )}
+        </IonCard>
       </IonContent>
     </IonPage>
   )

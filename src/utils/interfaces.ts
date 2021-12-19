@@ -6,6 +6,7 @@ interface USER {
   photoURL: string
   joinedOn: Timestamp
   uid: string
+  queryName?: string
 }
 
 interface RECORD {

@@ -1,7 +1,7 @@
 import { createContext } from "react"
 import { initializeApp, getApps } from "firebase/app"
 import { getAuth, User, Auth } from "firebase/auth"
-import { RECORD, USER } from "../utils/interfaces"
+import { RECORD } from "../utils/interfaces"
 import { Timestamp } from "firebase/firestore"
 
 const firebaseConfig = {

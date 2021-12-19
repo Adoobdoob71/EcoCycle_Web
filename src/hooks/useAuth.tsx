@@ -49,6 +49,7 @@ function useAuth() {
             photoURL: user.photoURL,
             displayName: user.displayName,
             uid: user.uid,
+            queryName: user.displayName?.toLowerCase(),
             joinedOn: Timestamp.now(),
           })
         setCurrentUser({
