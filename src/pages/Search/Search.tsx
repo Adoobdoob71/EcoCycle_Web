@@ -89,7 +89,7 @@ const Search: FC = () => {
             />
           ))}
           <IonListHeader>Users</IonListHeader>
-          {users.length == 0 &&
+          {users.length === 0 &&
             [0, 0, 0].map((item, index) => (
               <IonItem key={index}>
                 <IonSkeletonText

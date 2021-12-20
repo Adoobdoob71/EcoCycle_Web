@@ -21,17 +21,17 @@
   "screenshots" : [
     {
       "src": "assets/screenshots/Screenshot1.jpg",
-      "sizes": "1080x2254",
+      "sizes": "1080x2400",
       "type": "image/jpeg"
     },
     {
       "src": "assets/screenshots/Screenshot2.jpg",
-      "sizes": "1080x2261",
+      "sizes": "1080x2400",
       "type": "image/jpeg"
     },
     {
       "src": "assets/screenshots/Screenshot3.jpg",
-      "sizes": "1080x2247",
+      "sizes": "1080x2400",
       "type": "image/jpeg"
     }
   ]

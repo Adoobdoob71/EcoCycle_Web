@@ -67,11 +67,11 @@ const SignIn: FC = () => {
           <div
             className="column"
             style={{
-              height: height - 100,
+              height: height * 0.4,
               justifyContent: "space-around",
               alignItems: "center",
               backgroundColor: "var(--ion-card-background)",
-              padding: 24,
+              padding: 32,
               borderRadius: 8,
               boxShadow: "rgb(0 0 0 / 12%) 0px 4px 16px",
             }}>
@@ -90,7 +90,7 @@ const SignIn: FC = () => {
               </IonText>
             </div>
             <div className="column">
-              <IonButton
+              {/* <IonButton
                 onClick={signInGoogle}
                 style={{ marginBottom: 8 }}
                 shape="round"
@@ -98,7 +98,7 @@ const SignIn: FC = () => {
                 color="primary">
                 <IonIcon icon={logoGoogle} style={{ marginRight: 8 }} />
                 Sign In With Google
-              </IonButton>
+              </IonButton> */}
               <IonButton
                 onClick={signInGithub}
                 shape="round"

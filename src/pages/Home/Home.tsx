@@ -11,8 +11,8 @@ import {
   IonImg,
   IonSpinner,
   IonRouterLink,
-  IonReorderGroup,
-  IonReorder,
+  IonItem,
+  IonSkeletonText,
 } from "@ionic/react"
 import { leaf, add, refresh } from "ionicons/icons"
 import { Helmet } from "react-helmet"
@@ -259,6 +259,61 @@ const Home: React.FC = () => {
               />
             ))
           )}
+        </IonCard>
+        <IonCard
+          style={{ paddingBlock: 12, paddingInline: 12 }}
+          className="home_card"
+          mode="ios">
+          <IonText color="primary">
+            <span
+              style={{
+                fontSize: 16,
+                fontWeight: "bold",
+              }}>
+              Most Recycled Items
+            </span>
+          </IonText>
+          <div className="column" style={{ marginTop: 12 }}>
+            {[0, 0, 0].map((_item, index) => (
+              <div
+                className="row"
+                key={index}
+                style={{ filter: "blur(3px)", alignItems: "center" }}>
+                <IonSkeletonText
+                  animated
+                  style={{ width: 42, height: 42, borderRadius: 21 }}
+                  slot="start"
+                />
+                <div className="column" style={{ flex: 1, marginInline: 10 }}>
+                  <IonSkeletonText animated style={{ alignSelf: "stretch" }} />
+                  <IonSkeletonText
+                    animated
+                    style={{ alignSelf: "stretch", marginTop: 4 }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div
+            style={{
+              display: "grid",
+              placeItems: "center",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: 213,
+            }}>
+            <IonText color="dark">
+              <span
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                }}>
+                Coming Soon
+              </span>
+            </IonText>
+          </div>
         </IonCard>
       </IonContent>
     </IonPage>
