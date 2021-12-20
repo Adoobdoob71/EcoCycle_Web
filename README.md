@@ -19,7 +19,7 @@
  - Firebase
 
 ## Goals
-EcoCycle_Web's current goal is to motivate people to recycle by showing your progress and comparing it with friends. The future goal is to make refund value (when recycling bottles and cans) digital and more accessible for people.
+EcoCycle_Web's current goal is to motivate people to recycle by showing your progress and comparing it with friends. The future goal is to make refund value (when recycling bottles and cans) digital and more accessible for people by showing nearby recycling stations and being able to scan the items at the recycling stations.
 
 ## Contributing
 Feel free to contribute, it'd be great
