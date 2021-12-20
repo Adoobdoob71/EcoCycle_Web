@@ -42,6 +42,7 @@ function useAuth() {
             email: user.providerData[0].email,
             photoURL: user.photoURL,
             displayName: user.displayName,
+            queryName: user.displayName?.toLowerCase(),
           })
         else
           await setDoc(doc(getFirestore(), "users", user.uid), {
