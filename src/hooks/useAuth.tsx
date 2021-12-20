@@ -37,24 +37,29 @@ function useAuth() {
     const unsubAuth = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const exists = await getDoc(doc(getFirestore(), "users", user.uid))
+        const user_data = await fetch(
+          `https://api.github.com/user/${user.providerData[0].uid}`
+        )
+        const user_parsed = await user_data.json()
         if (exists.exists())
           await updateDoc(doc(getFirestore(), "users", user.uid), {
             email: user.providerData[0].email,
             photoURL: user.photoURL,
-            displayName: user.displayName,
-            queryName: user.displayName?.toLowerCase(),
+            displayName: user_parsed?.login,
+            queryName: user_parsed?.login?.toLowerCase() || "",
           })
         else
           await setDoc(doc(getFirestore(), "users", user.uid), {
             email: user.providerData[0].email,
             photoURL: user.photoURL,
-            displayName: user.displayName,
+            displayName: user_parsed?.login,
+            queryName: user_parsed?.login?.toLowerCase() || "",
             uid: user.uid,
-            queryName: user.displayName?.toLowerCase(),
             joinedOn: Timestamp.now(),
           })
         setCurrentUser({
           ...user,
+          displayName: user_parsed?.login,
           email: user.providerData[0].email,
         })
       } else {

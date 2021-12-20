@@ -63,33 +63,32 @@ const Home: React.FC = () => {
       <IonContent>
         <IonCard className="home_header" mode="ios">
           <IonMenuButton color="dark" mode="md" />
-          <div style={{ flex: 1 }}>
-            <IonText color="dark">
-              <div className="column">
-                <span
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "bold",
-                    marginBottom: 2,
-                  }}>
-                  Welcome back,{" "}
-                  {currentUser?.displayName?.substring(
-                    0,
-                    currentUser?.displayName.indexOf(" ")
-                  )}
-                </span>
-                <span
-                  style={{
-                    fontSize: 14,
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    overflow: "hidden",
-                  }}>
-                  Planning on recycling more?
-                </span>
-              </div>
-            </IonText>
+          {/* <IonText color="dark" style={{ flex: 1 }}> */}
+          <div className="column" style={{ width: "calc(100% - 138.375px)" }}>
+            <span
+              style={{
+                fontSize: 16,
+                color: "var(--ion-color-dark)",
+                fontWeight: "bold",
+                marginBottom: 2,
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+              }}>
+              Welcome back, {currentUser?.displayName}
+            </span>
+            <span
+              style={{
+                fontSize: 14,
+                color: "var(--ion-color-dark)",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+              }}>
+              Planning on recycling more?
+            </span>
           </div>
+          {/* </IonText> */}
           <div className="row" style={{ alignItems: "center" }}>
             <IonButton
               fill="clear"
@@ -189,7 +188,7 @@ const Home: React.FC = () => {
                   marginInline: 12,
                   fontWeight: "bold",
                 }}>
-                No Data
+                Not Enough Data
               </span>
             </IonText>
             <IonButton

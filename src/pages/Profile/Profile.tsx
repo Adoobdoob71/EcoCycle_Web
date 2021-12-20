@@ -183,27 +183,63 @@ const Profile: FC = () => {
                 style={{ borderRadius: 8 }}></IonProgressBar>
             </IonCard>
 
-            <IonCard
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                paddingTop: 12,
-                marginBlock: 12,
-              }}
-              mode="ios">
-              <IonText color="primary">
-                <span
-                  style={{
-                    fontSize: 16,
-                    marginInline: 12,
-                    fontWeight: "bold",
-                  }}>
-                  Recycling History
-                </span>
-              </IonText>
-              <Chart data={convertedRecords} />
-            </IonCard>
+            {convertedRecords === undefined ? (
+              <IonCard
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingBlock: 40,
+                  marginBlock: 12,
+                }}
+                className="home_card"
+                mode="ios">
+                <IonText color="disabled">
+                  <span
+                    style={{
+                      fontSize: 18,
+                      marginInline: 12,
+                      fontWeight: "bold",
+                    }}>
+                    Not Enough Data
+                  </span>
+                </IonText>
+                {currentUser?.uid === userData?.uid && (
+                  <IonButton
+                    fill="outline"
+                    shape="round"
+                    routerLink="/record"
+                    routerDirection="forward"
+                    style={{ marginTop: 12 }}
+                    mode="md">
+                    Record Data
+                  </IonButton>
+                )}
+              </IonCard>
+            ) : (
+              <IonCard
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  paddingTop: 12,
+                  marginBlock: 12,
+                }}
+                mode="ios">
+                <IonText color="primary">
+                  <span
+                    style={{
+                      fontSize: 16,
+                      marginInline: 12,
+                      fontWeight: "bold",
+                    }}>
+                    Recycling History
+                  </span>
+                </IonText>
+                <Chart data={convertedRecords} />
+              </IonCard>
+            )}
             <IonCard
               style={{ paddingBlock: 12, paddingInline: 12 }}
               className="home_card"

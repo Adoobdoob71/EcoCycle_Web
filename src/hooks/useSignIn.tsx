@@ -1,17 +1,9 @@
-import React, { FC, useContext, useState } from "react"
+import { useContext } from "react"
 import {
   GoogleAuthProvider,
   signInWithRedirect,
   GithubAuthProvider,
 } from "firebase/auth"
-import {
-  setDoc,
-  getFirestore,
-  doc,
-  Timestamp,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore"
 import { AuthContext } from "../context/auth"
 
 function useSignIn() {
