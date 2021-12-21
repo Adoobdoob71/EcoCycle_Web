@@ -2,7 +2,6 @@ import React, { CSSProperties, FC } from "react"
 import { AreaChart, Area, Tooltip, XAxis } from "recharts"
 import { useDimensions } from "../../hooks/useDimensions"
 import { convertTimestampToString } from "../../utils/functions"
-import { RECORD } from "../../utils/interfaces"
 import { Timestamp } from "@firebase/firestore"
 
 interface Props {

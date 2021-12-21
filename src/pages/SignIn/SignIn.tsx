@@ -1,32 +1,9 @@
-import React, { FC, useContext } from "react"
-import {
-  IonContent,
-  IonPage,
-  IonText,
-  IonButton,
-  IonIcon,
-  IonInput,
-} from "@ionic/react"
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  GithubAuthProvider,
-} from "firebase/auth"
-import {
-  setDoc,
-  getFirestore,
-  doc,
-  Timestamp,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore"
-import { AuthContext } from "../../context/auth"
+import React, { FC } from "react"
+import { IonContent, IonPage, IonText, IonButton, IonIcon } from "@ionic/react"
 import { useDimensions } from "../../hooks/useDimensions"
 import { logoGithub, logoGoogle } from "ionicons/icons"
 import "./SignIn.css"
 import { useSignIn } from "../../hooks/useSignIn"
-import { Helmet } from "react-helmet"
-import { useTheme } from "../../hooks/useTheme"
 
 const SignIn: FC = () => {
   const { signInGithub, signInGoogle } = useSignIn()
@@ -34,28 +11,6 @@ const SignIn: FC = () => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Sign In</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/signin" />
-        <meta property="og:title" content="EcoCycle - Sign In" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/signin" />
-        <meta name="twitter:title" content="EcoCycle - Sign In" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent>
         <div
           className="column"

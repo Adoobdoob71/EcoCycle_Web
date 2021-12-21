@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react"
-import { ItemReorderEventDetail } from "@ionic/core"
 import {
   getFirestore,
   collection,
@@ -12,7 +11,6 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore"
-import { useLongPress } from "./useLongPress"
 import { useDimensions } from "./useDimensions"
 import { USER, RECORD } from "../utils/interfaces"
 import { AuthContext } from "../context/auth"

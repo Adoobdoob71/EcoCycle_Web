@@ -7,14 +7,12 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore"
-import { NEWS, USER } from "../utils/interfaces"
+import { USER } from "../utils/interfaces"
 import { InputChangeEventDetail } from "@ionic/core"
 import { useHistory } from "react-router-dom"
 
 function useSearch() {
   const [users, setUsers] = useState<USER[]>([])
-  const [items, setItems] = useState([])
-  const [news, setNews] = useState<NEWS[]>([])
   const [queryString, setQueryString] = useState<string | null | undefined>("")
   const [queryHistory, setQueryHistory] = useState<
     (string | undefined | null)[]
@@ -96,7 +94,6 @@ function useSearch() {
     users,
     queryString,
     onChangeQuery,
-    items,
     submitSearch,
     queryHistory,
     deleteSearchQuery,

@@ -11,11 +11,9 @@ import {
   IonImg,
   IonSpinner,
   IonRouterLink,
-  IonItem,
   IonSkeletonText,
 } from "@ionic/react"
 import { leaf, add, refresh } from "ionicons/icons"
-import { Helmet } from "react-helmet"
 
 import { useHome } from "../../hooks/useHome"
 
@@ -27,8 +25,6 @@ import { RECYCLING_GOAL } from "../../utils/constants"
 const Home: React.FC = () => {
   const {
     currentUser,
-    records,
-    width,
     recycledTotal,
     convertedRecords,
     loading,
@@ -38,32 +34,9 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Home</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/home" />
-        <meta property="og:title" content="EcoCycle - Home" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/home" />
-        <meta name="twitter:title" content="EcoCycle - Home" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent>
         <IonCard className="home_header" mode="ios">
           <IonMenuButton color="dark" mode="md" />
-          {/* <IonText color="dark" style={{ flex: 1 }}> */}
           <div className="column" style={{ width: "calc(100% - 138.375px)" }}>
             <span
               style={{
@@ -88,7 +61,6 @@ const Home: React.FC = () => {
               Planning on recycling more?
             </span>
           </div>
-          {/* </IonText> */}
           <div className="row" style={{ alignItems: "center" }}>
             <IonButton
               fill="clear"

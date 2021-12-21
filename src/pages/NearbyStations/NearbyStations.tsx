@@ -18,39 +18,12 @@ import { useDimensions } from "../../hooks/useDimensions"
 import { chevronUp } from "ionicons/icons"
 import { useNearbyStations } from "../../hooks/useNearbyStations"
 import "./NearbyStations.css"
-import { Helmet } from "react-helmet"
 
-interface Props {
-  router: HTMLIonRouterOutletElement | null
-}
-
-const NearbyStations: FC<Props> = ({ router }) => {
+const NearbyStations: FC = () => {
   const { height, width } = useDimensions()
   const { menuOpen, toggleMenu } = useNearbyStations()
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Nearby Stations</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/nearby" />
-        <meta property="og:title" content="EcoCycle - Nearby Stations" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/nearby" />
-        <meta name="twitter:title" content="EcoCycle - Nearby Stations" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent>
         <IonHeader>
           <IonToolbar>

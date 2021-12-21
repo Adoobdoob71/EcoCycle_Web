@@ -13,7 +13,6 @@ import {
   limit,
   Timestamp,
   deleteDoc,
-  updateDoc,
 } from "firebase/firestore"
 import { useIonToast } from "@ionic/react"
 

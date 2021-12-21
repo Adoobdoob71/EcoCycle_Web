@@ -13,7 +13,6 @@ import {
   IonToolbar,
 } from "@ionic/react"
 import React, { FC } from "react"
-import { Helmet } from "react-helmet"
 import { Friend } from "../../components/."
 import { useFriends } from "../../hooks/useFriends"
 
@@ -22,28 +21,6 @@ const Friends: FC = (props) => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Friends</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/friends" />
-        <meta property="og:title" content="EcoCycle - Friends" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/friends" />
-        <meta name="twitter:title" content="EcoCycle - Friends" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent fullscreen>
         <IonHeader slot="fixed">
           <IonToolbar>

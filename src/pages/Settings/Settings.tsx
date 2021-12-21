@@ -18,13 +18,10 @@ import {
   IonSelect,
   IonSelectOption,
 } from "@ionic/react"
-import { AuthContext } from "../../context/auth"
 import { ThemeContext } from "../../context/theme"
 import { useSettings } from "../../hooks/useSettings"
-import { Helmet } from "react-helmet"
 
 const Settings: FC = () => {
-  const { currentUser } = useContext(AuthContext)
   const { isThemeDark } = useContext(ThemeContext)
   const {
     signOutOfAccount,
@@ -38,28 +35,6 @@ const Settings: FC = () => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Settings</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/settings" />
-        <meta property="og:title" content="EcoCycle - Settings" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/settings" />
-        <meta name="twitter:title" content="EcoCycle - Settings" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent>
         <IonHeader>
           <IonToolbar>

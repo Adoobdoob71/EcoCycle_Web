@@ -29,7 +29,6 @@ import { useFollow } from "../../hooks/useFollow"
 import { RECYCLING_GOAL } from "../../utils/constants"
 import { DateTime } from "luxon"
 import { Timestamp } from "firebase/firestore"
-import { Helmet } from "react-helmet"
 
 const Profile: FC = () => {
   const { uid } = useParams<{ uid: string }>()
@@ -49,38 +48,6 @@ const Profile: FC = () => {
 
   return (
     <IonPage>
-      {userData && (
-        <Helmet>
-          <title>{userData.displayName}'s Profile</title>
-          <meta
-            name="title"
-            content={`EcoCycle - ${userData.displayName}'s Profile`}
-          />
-          <meta name="description" content="The Recycling App." />
-
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`https://ecocycle.web.app/profile/${userData.uid}`}
-          />
-          <meta
-            property="og:title"
-            content={`EcoCycle - ${userData.displayName}'s Profile`}
-          />
-          <meta property="og:description" content="The Recycling App." />
-          <meta property="og:image" content={userData.photoURL} />
-
-          <meta name="twitter:card" content="summary_large_image"></meta>
-          <meta
-            name="twitter:url"
-            content={`https://ecocycle.web.app/profile/${userData.uid}`}></meta>
-          <meta
-            name="twitter:title"
-            content={`EcoCycle - ${userData.displayName}'s Profile`}></meta>
-          <meta name="twitter:description" content="The Recycling App."></meta>
-          <meta name="twitter:image" content={userData.photoURL}></meta>
-        </Helmet>
-      )}
       <IonContent fullscreen>
         <IonHeader slot="fixed">
           <IonToolbar>

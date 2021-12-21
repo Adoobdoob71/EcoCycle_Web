@@ -17,10 +17,8 @@ import {
 import { add, leaf, remove } from "ionicons/icons"
 import { useRecord } from "../../hooks/useRecord"
 import { useDimensions } from "../../hooks/useDimensions"
-import { Timestamp } from "@firebase/firestore"
 import { Chart } from "../../components"
 import { RECYCLING_GOAL } from "../../utils/constants"
-import { Helmet } from "react-helmet"
 
 const Record: FC = () => {
   const {
@@ -39,28 +37,6 @@ const Record: FC = () => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - Record</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/record" />
-        <meta property="og:title" content="EcoCycle - Record" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/record" />
-        <meta name="twitter:title" content="EcoCycle - Record" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent fullscreen>
         <IonHeader slot="fixed">
           <IonToolbar>

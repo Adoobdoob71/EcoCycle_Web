@@ -14,14 +14,10 @@ import {
   IonButton,
   IonIcon,
   IonSpinner,
-  IonModal,
-  IonText,
-  IonInput,
 } from "@ionic/react"
 import { useDimensions } from "../../hooks/useDimensions"
 import { useHistory } from "../../hooks/useHistory"
 import { RecordItem } from "../../components"
-import { Helmet } from "react-helmet"
 import { pencil, trash } from "ionicons/icons"
 import "./History.css"
 
@@ -43,28 +39,6 @@ const History: FC = () => {
 
   return (
     <IonPage>
-      <Helmet>
-        <title>EcoCycle - History</title>
-        <meta name="description" content="The Recycling App." />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecocycle.web.app/history" />
-        <meta property="og:title" content="EcoCycle - History" />
-        <meta property="og:description" content="The Recycling App." />
-        <meta
-          property="og:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ecocycle.web.app/history" />
-        <meta name="twitter:title" content="EcoCycle - History" />
-        <meta name="twitter:description" content="The Recycling App." />
-        <meta
-          name="twitter:image"
-          content="https://ecocycle.web.app/assets/icon/icon.png"
-        />
-      </Helmet>
       <IonContent fullscreen>
         <IonHeader slot="fixed">
           <IonToolbar>
