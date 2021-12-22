@@ -1,7 +1,7 @@
 {
   "short_name": "EcoCycle",
   "name": "EcoCycle",
-  "start_url": ".",
+  "start_url": "https://ecocycle.web.app",
   "display": "standalone",
   "theme_color": "#fff",
   "background_color": "#fff",
@@ -18,7 +18,33 @@
       "sizes": "512x512"
     }
   ],
-  "screenshots" : [
+  "shortcuts": [
+    {
+      "name": "My Profile",
+      "short_name": "My Profile",
+      "description": "Go to your profile screen",
+      "url": "/profile_shortcut"
+    },
+    {
+      "name": "Record",
+      "short_name": "Record",
+      "description": "Add recycling records",
+      "url": "/records"
+    },
+    {
+      "name": "Nearby Stations",
+      "short_name": "Nearby Stations",
+      "description": "Find nearby recycling stations",
+      "url": "/nearby"
+    },
+    {
+      "name": "Friends",
+      "short_name": "Friends",
+      "description": "Go to your friends screen",
+      "url": "/friends"
+    }
+  ],
+  "screenshots": [
     {
       "src": "assets/screenshots/Screenshot1.jpg",
       "sizes": "1080x2400",

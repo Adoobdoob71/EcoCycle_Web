@@ -21,7 +21,7 @@ import "./NearbyStations.css"
 
 const NearbyStations: FC = () => {
   const { height, width } = useDimensions()
-  const { menuOpen, toggleMenu } = useNearbyStations()
+  const { menuOpen, toggleMenu, setMenuOpen } = useNearbyStations()
   return (
     <IonPage>
       <IonContent>
@@ -55,10 +55,11 @@ const NearbyStations: FC = () => {
           </IonButton>
         </IonFab>
         <IonModal
-          mode="ios"
-          cssClass="nearby_stations_modal"
-          showBackdrop={false}
-          isOpen={menuOpen}>
+          breakpoints={[0, 0.4, 1]}
+          initialBreakpoint={0.4}
+          onDidDismiss={() => setMenuOpen(false)}
+          isOpen={menuOpen}
+          swipeToClose={true}>
           <div
             className="column"
             style={{
@@ -72,7 +73,10 @@ const NearbyStations: FC = () => {
                 Coming soon
               </span>
             </IonText>
-            <IonButton color="tertiary" mode="md" onClick={toggleMenu}>
+            <IonButton
+              color="tertiary"
+              mode="md"
+              onClick={() => setMenuOpen(false)}>
               Close
             </IonButton>
           </div>

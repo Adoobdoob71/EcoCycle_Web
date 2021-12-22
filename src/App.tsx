@@ -83,6 +83,9 @@ const App: React.FC = () => {
                         <Profile />
                       </Suspense>
                     </Route>
+                    <Route path="/profile_shortcut">
+                      <Redirect to={`/profile/${currentUser.uid}`} />
+                    </Route>
                     <Route path="/record" exact={true}>
                       <Suspense fallback={Fallback()}>
                         <Record />
@@ -118,34 +121,10 @@ const App: React.FC = () => {
                       <SignIn />
                     </Suspense>
                   </Route>
-                  <Route path="/home" exact={true}>
-                    <Redirect to="/signin" />
-                  </Route>
-                  <Route path="/friends" exact={true}>
-                    <Redirect to="/signin" />
-                  </Route>
-                  <Route path="/search" exact={true}>
-                    <Redirect to="/signin" />
-                  </Route>
-                  <Route path="/search/:query">
-                    <Redirect to="/signin" />
-                  </Route>
                   <Route path="/profile/:uid">
                     <Suspense fallback={Fallback()}>
                       <Profile />
                     </Suspense>
-                  </Route>
-                  <Route path="/record" exact={true}>
-                    <Redirect to="/signin" />
-                  </Route>
-                  <Route path="/history" exact={true}>
-                    <Redirect to="/signin" />
-                  </Route>
-                  <Route path="/nearby" exact={true}>
-                    <Redirect to="signin" />
-                  </Route>
-                  <Route path="/settings" exact={true}>
-                    <Redirect to="/signin" />
                   </Route>
                   <Route>
                     <Redirect to="/signin" />
@@ -183,6 +162,7 @@ const FallbackTwo = () => (
   <div
     style={{
       display: "flex",
+      flexDirection: "column",
       height: "100vh",
       width: "100vw",
       justifyContent: "center",
@@ -193,8 +173,8 @@ const FallbackTwo = () => (
     <span
       style={{
         color: "var(--ion-color-dark)",
-        fontSize: 24,
-        marginBottom: 12,
+        fontSize: 21,
+        marginBottom: 18,
       }}>
       Loading
     </span>

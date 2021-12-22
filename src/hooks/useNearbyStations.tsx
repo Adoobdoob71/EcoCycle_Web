@@ -8,6 +8,7 @@ function useNearbyStations() {
   return {
     menuOpen,
     toggleMenu,
+    setMenuOpen,
   }
 }
 

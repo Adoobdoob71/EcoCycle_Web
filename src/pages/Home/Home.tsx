@@ -48,7 +48,7 @@ const Home: React.FC = () => {
                 textOverflow: "ellipsis",
                 overflow: "hidden",
               }}>
-              Welcome back, {currentUser?.displayName}
+              Welcome, {currentUser?.displayName}
             </span>
             <span
               style={{

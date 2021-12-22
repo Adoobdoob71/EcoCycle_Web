@@ -2,10 +2,10 @@ import React, { Suspense, lazy } from "react"
 import ReactDOM from "react-dom"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 // import reportWebVitals from "./reportWebVitals"
-import { IonSpinner, setupConfig } from "@ionic/react"
+import { IonSpinner, setupIonicReact } from "@ionic/react"
 const App = lazy(() => import("./App"))
 
-setupConfig({ mode: "md" })
+setupIonicReact({ mode: "md" })
 
 ReactDOM.render(
   <React.StrictMode>
