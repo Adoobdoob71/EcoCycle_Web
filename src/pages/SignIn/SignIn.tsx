@@ -13,28 +13,21 @@ const SignIn: FC = () => {
     <IonPage>
       <IonContent>
         <div
-          className="column"
+          className="column justify_center align_center"
           style={{
             height: height,
-            justifyContent: "center",
-            alignItems: "center",
           }}>
           <div
-            className="column"
+            className="column align_center"
             style={{
               height: height * 0.4,
               justifyContent: "space-around",
-              alignItems: "center",
               backgroundColor: "var(--ion-card-background)",
               padding: 32,
               borderRadius: 8,
               boxShadow: "rgb(0 0 0 / 12%) 0px 4px 16px",
             }}>
-            <div
-              className="row"
-              style={{
-                alignItems: "center",
-              }}>
+            <div className="row align_center">
               <IonText color="dark">
                 <span style={{ fontSize: 24, marginRight: 4 }}>Sign into</span>
               </IonText>

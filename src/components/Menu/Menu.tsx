@@ -33,8 +33,8 @@ const Menu: FC<Props> = ({}) => {
     <IonMenu contentId="main" type="overlay">
       <IonContent style={{ flex: 1 }}>
         <div
-          className="row"
-          style={{ alignItems: "center", paddingInline: 16, paddingBlock: 24 }}>
+          className="row align_center"
+          style={{ paddingInline: 16, paddingBlock: 24 }}>
           <IonAvatar style={{ width: 46, height: 46 }}>
             <IonImg src={currentUser?.photoURL || ""} />
           </IonAvatar>
@@ -87,11 +87,10 @@ const Menu: FC<Props> = ({}) => {
           />
         </IonList>
         <div
-          className="row"
+          className="row align_center"
           style={{
             marginTop: height - 435,
             justifyContent: "flex-end",
-            alignItems: "center",
             alignSelf: "stretch",
             paddingInline: 12,
           }}>

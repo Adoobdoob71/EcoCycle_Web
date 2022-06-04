@@ -76,21 +76,17 @@ const Profile: FC = () => {
         </IonRefresher>
         {loading ? (
           <div
+            className="row justify_center align_center"
             style={{
-              display: "flex",
               height: height - 56,
-              justifyContent: "center",
-              alignItems: "center",
             }}>
             <IonSpinner color="primary" />
           </div>
         ) : (
           <div className="column">
             <IonCard
+              className="row align_center"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
                 paddingInline: 16,
                 paddingBlock: 14,
                 marginBottom: 12,
@@ -118,17 +114,16 @@ const Profile: FC = () => {
             </IonCard>
             <IonCard style={{ padding: 21, marginBlock: 12 }} mode="ios">
               <div
-                className="row"
+                className="row align_center"
                 style={{
                   marginBottom: 12,
                   alignSelf: "stretch",
-                  alignItems: "center",
                 }}>
                 <IonIcon icon={leaf} size="large" color="dark" />
                 <div
                   className="column"
                   style={{ flex: 1, alignItems: "flex-end" }}>
-                  <div className="row" style={{ alignItems: "center" }}>
+                  <div className="row align_center">
                     <IonText
                       color={
                         recycledTotal >= RECYCLING_GOAL ? "primary" : "dark"
@@ -152,15 +147,11 @@ const Profile: FC = () => {
 
             {convertedRecords === undefined ? (
               <IonCard
+                className="column justify_center align_center"
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
                   paddingBlock: 40,
                   marginBlock: 12,
                 }}
-                className="home_card"
                 mode="ios">
                 <IonText color="disabled">
                   <span
@@ -207,10 +198,7 @@ const Profile: FC = () => {
                 <Chart data={convertedRecords} />
               </IonCard>
             )}
-            <IonCard
-              style={{ paddingBlock: 12, paddingInline: 12 }}
-              className="home_card"
-              mode="ios">
+            <IonCard style={{ paddingBlock: 12, paddingInline: 12 }} mode="ios">
               <IonText color="primary">
                 <span
                   style={{
@@ -223,9 +211,9 @@ const Profile: FC = () => {
               <div className="column" style={{ marginTop: 12 }}>
                 {[0, 0, 0].map((_item, index) => (
                   <div
-                    className="row"
+                    className="row align_center"
                     key={index}
-                    style={{ filter: "blur(3px)", alignItems: "center" }}>
+                    style={{ filter: "blur(3px)" }}>
                     <IonSkeletonText
                       animated
                       style={{ width: 42, height: 42, borderRadius: 21 }}

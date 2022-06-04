@@ -23,8 +23,8 @@ const UserProgress: FC<Props> = ({
   const openProfile = () => history.push(`/profile/${uid}`)
   return (
     <div
-      className="row touch_opacity"
-      style={{ ...style, alignItems: "center" }}
+      className="row touch_opacity align_center"
+      style={style}
       onClick={openProfile}>
       <IonAvatar style={{ width: 32, height: 32 }}>
         <IonImg src={avatar_url || ""} />

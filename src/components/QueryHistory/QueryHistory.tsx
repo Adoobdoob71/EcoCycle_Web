@@ -11,9 +11,8 @@ interface Props {
 const QueryHistory: FC<Props> = ({ text, onDelete, onClick }) => {
   return (
     <div
-      className="row touch_opacity"
+      className="row touch_opacity align_center"
       style={{
-        alignItems: "center",
         paddingInline: 16,
         paddingBlock: 8,
       }}>

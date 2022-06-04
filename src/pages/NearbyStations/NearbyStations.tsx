@@ -61,10 +61,9 @@ const NearbyStations: FC = () => {
           isOpen={menuOpen}
           swipeToClose={true}>
           <div
-            className="column"
+            className="column align_center"
             style={{
               height: 300,
-              alignItems: "center",
               justifyContent: "center",
               backgroundColor: "var(--ion-background-color)",
             }}>

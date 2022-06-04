@@ -24,11 +24,10 @@ const RecordItem: FC<Props> = ({
 
   return (
     <IonCard
-      className="row"
+      className="row align_center"
       style={{
         paddingInline: 12,
         paddingBlock: 14,
-        alignItems: "center",
       }}
       mode="ios">
       {checkboxVisible && (
@@ -44,7 +43,7 @@ const RecordItem: FC<Props> = ({
         <IonText color="dark" style={{ marginInlineStart: 0, marginBottom: 4 }}>
           <span style={{ fontSize: 16 }}>{items} Items</span>
         </IonText>
-        <div className="row touch_opacity" style={{ alignItems: "center" }}>
+        <div className="row touch_opacity align_center">
           <IonIcon
             icon={location}
             style={{ color: "#3880ff", fontSize: 14, marginInlineEnd: 8 }}
@@ -56,7 +55,7 @@ const RecordItem: FC<Props> = ({
           </IonText>
         </div>
       </div>
-      <div className="column" style={{ alignItems: "center" }}>
+      <div className="column align_center">
         <IonText color="medium">
           <span style={{ fontSize: 16 }}>
             {DateTime.fromJSDate(submittedOn.toDate()).toFormat("LLL dd")}

@@ -61,7 +61,7 @@ const Home: React.FC = () => {
               Planning on recycling more?
             </span>
           </div>
-          <div className="row" style={{ alignItems: "center" }}>
+          <div className="row align_center">
             <IonButton
               fill="clear"
               color="dark"
@@ -86,20 +86,18 @@ const Home: React.FC = () => {
 
         <IonCard
           style={{ padding: 21, marginBottom: 16 }}
-          className="home_card"
           mode="ios"
           routerLink="/history"
           routerDirection="forward">
           <div
-            className="row"
+            className="row align_center"
             style={{
               marginBottom: 12,
               alignSelf: "stretch",
-              alignItems: "center",
             }}>
             <IonIcon icon={leaf} size="large" color="dark" />
             <div className="column" style={{ flex: 1, alignItems: "flex-end" }}>
-              <div className="row" style={{ alignItems: "center" }}>
+              <div className="row align_center">
                 <IonText
                   color={recycledTotal >= RECYCLING_GOAL ? "primary" : "dark"}>
                   <span>{recycledTotal}</span>
@@ -127,7 +125,6 @@ const Home: React.FC = () => {
               paddingTop: 12,
               marginBottom: 16,
             }}
-            className="home_card"
             mode="ios">
             <IonText color="primary">
               <span
@@ -143,15 +140,11 @@ const Home: React.FC = () => {
           </IonCard>
         ) : (
           <IonCard
+            className="column justify_center align_center"
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
               paddingBlock: 40,
               marginBottom: 16,
             }}
-            className="home_card"
             mode="ios">
             <IonText color="disabled">
               <span
@@ -174,11 +167,8 @@ const Home: React.FC = () => {
             </IonButton>
           </IonCard>
         )}
-        <IonCard
-          style={{ paddingBlock: 16, paddingInline: 12 }}
-          className="home_card"
-          mode="ios">
-          <div className="row" style={{ alignItems: "center" }}>
+        <IonCard style={{ paddingBlock: 16, paddingInline: 12 }} mode="ios">
+          <div className="row align_center">
             <IonText color="primary">
               <span
                 style={{
@@ -205,10 +195,9 @@ const Home: React.FC = () => {
           />
           {loading ? (
             <div
-              className="row"
+              className="row align_center"
               style={{
                 justifyContent: "center",
-                alignItems: "center",
                 marginTop: 12,
               }}>
               <IonSpinner color="tertiary" />
@@ -231,10 +220,7 @@ const Home: React.FC = () => {
             ))
           )}
         </IonCard>
-        <IonCard
-          style={{ paddingBlock: 12, paddingInline: 12 }}
-          className="home_card"
-          mode="ios">
+        <IonCard style={{ paddingBlock: 12, paddingInline: 12 }} mode="ios">
           <IonText color="primary">
             <span
               style={{
@@ -247,9 +233,9 @@ const Home: React.FC = () => {
           <div className="column" style={{ marginTop: 12 }}>
             {[0, 0, 0].map((_item, index) => (
               <div
-                className="row"
+                className="row align_center"
                 key={index}
-                style={{ filter: "blur(3px)", alignItems: "center" }}>
+                style={{ filter: "blur(3px)" }}>
                 <IonSkeletonText
                   animated
                   style={{ width: 42, height: 42, borderRadius: 21 }}

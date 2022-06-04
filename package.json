@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "3.2.5",
-    "@ionic/cli": "6.19.1",
+    "@ionic/cli": "^6.19.1",
     "@types/luxon": "^2.3.2",
     "@types/react-helmet": "^6.1.5",
     "react-scripts": "4.0.2"
