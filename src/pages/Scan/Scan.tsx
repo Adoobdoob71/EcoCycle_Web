@@ -1,23 +1,27 @@
-import React, { FC } from "react";
+import React, { FC } from "react"
 import {
   IonPage,
   IonContent,
   IonHeader,
   IonToolbar,
   IonButtons,
-  IonButton,
   IonBackButton,
   IonTitle,
-  IonIcon,
-  IonText,
   IonCard,
-  IonProgressBar,
-} from "@ionic/react";
-import { add, leaf, remove } from "ionicons/icons";
-import { useDimensions } from "../../hooks/useDimensions";
-import { Chart } from "../../components";
+  IonText,
+} from "@ionic/react"
+import { useScan } from '../../hooks/useScan';
 
 const Scan: FC = () => {
+
+  const {
+    multiplier,
+    loading,
+    incrementMult,
+    decrementMult,
+    decrementDisabled
+  } = useScan()
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -29,9 +33,20 @@ const Scan: FC = () => {
             <IonTitle>Scan Items</IonTitle>
           </IonToolbar>
         </IonHeader>
+        {/* Scanner Card */}
+        <IonCard className="row align_center" style={{ padding: 21, marginBottom: 16 }} mode="ios">
+          {/* Item image */}
+          <div className="column">
+            <IonText>
+              {/* Item name */}
+              {/* Item category */}
+            </IonText>
+          </div>
+
+        </IonCard>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Scan;
+export default Scan

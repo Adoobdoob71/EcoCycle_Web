@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "react"
 import {
   IonPage,
   IonContent,
@@ -13,12 +13,12 @@ import {
   IonCard,
   IonProgressBar,
   IonInput,
-} from "@ionic/react";
-import { add, leaf, remove, barcode } from "ionicons/icons";
-import { useRecord } from "../../hooks/useRecord";
-import { useDimensions } from "../../hooks/useDimensions";
-import { Chart } from "../../components";
-import { RECYCLING_GOAL } from "../../utils/constants";
+} from "@ionic/react"
+import { add, leaf, remove, scan } from "ionicons/icons"
+import { useRecord } from "../../hooks/useRecord"
+import { useDimensions } from "../../hooks/useDimensions"
+import { Chart } from "../../components"
+import { RECYCLING_GOAL } from "../../utils/constants"
 
 const Record: FC = () => {
   const {
@@ -31,9 +31,9 @@ const Record: FC = () => {
     addRecordToDb,
     recycledTotal,
     convertedRecords,
-  } = useRecord();
+  } = useRecord()
 
-  const { width } = useDimensions();
+  const { width } = useDimensions()
 
   return (
     <IonPage>
@@ -50,29 +50,25 @@ const Record: FC = () => {
               routerLink="/scan"
               mode="md"
               routerDirection="forward"
-              slot="end"
-            >
-              <IonIcon icon={barcode} />
+              slot="end">
+              <IonIcon icon={scan} />
             </IonButton>
           </IonToolbar>
         </IonHeader>
         <div style={{ height: 56 }}></div>
         <div
-          className="row"
+          className="row align_center"
           style={{
             justifyContent: "space-between",
-            alignItems: "center",
             paddingInline: 10,
             paddingBlock: 12,
             marginInline: 12,
             marginBlock: 32,
-          }}
-        >
+          }}>
           <IonButton
             buttonType="icon"
             disabled={decrementDisabled}
-            onClick={decrementRecord}
-          >
+            onClick={decrementRecord}>
             <IonIcon icon={remove} />
           </IonButton>
           <div style={{ width: 80 }}>
@@ -87,16 +83,16 @@ const Record: FC = () => {
               }}
               inputMode="numeric"
               onIonChange={(value) => {
-                let val = parseInt(value.detail.value!, 10);
+                let val = parseInt(value.detail.value!, 10)
                 if (isNaN(val)) {
-                  setRecordValue(0);
-                  return;
+                  setRecordValue(0)
+                  return
                 }
                 if (val >= 100) {
-                  setRecordValue(100);
-                  return;
+                  setRecordValue(100)
+                  return
                 }
-                setRecordValue(val);
+                setRecordValue(val)
               }}
             />
           </div>
@@ -106,13 +102,11 @@ const Record: FC = () => {
         </div>
         <IonCard style={{ padding: 21 }} mode="ios">
           <div
-            className="row"
+            className="row align_center"
             style={{
               marginBottom: 12,
               alignSelf: "stretch",
-              alignItems: "center",
-            }}
-          >
+            }}>
             <IonIcon
               icon={leaf}
               size="large"
@@ -123,14 +117,13 @@ const Record: FC = () => {
               }
             />
             <div className="column" style={{ flex: 1, alignItems: "flex-end" }}>
-              <div className="row" style={{ alignItems: "center" }}>
+              <div className="row align_center">
                 <IonText
                   color={
                     recycledTotal + recordValue >= RECYCLING_GOAL
                       ? "primary"
                       : "dark"
-                  }
-                >
+                  }>
                   <span>{recycledTotal + recordValue}</span>
                 </IonText>
                 <IonText color="primary">
@@ -145,8 +138,7 @@ const Record: FC = () => {
           <IonProgressBar
             value={(recycledTotal + recordValue) / RECYCLING_GOAL}
             buffer={(recycledTotal + recordValue) / RECYCLING_GOAL}
-            style={{ borderRadius: 8 }}
-          ></IonProgressBar>
+            style={{ borderRadius: 8 }}></IonProgressBar>
         </IonCard>
         <IonCard
           style={{
@@ -156,16 +148,14 @@ const Record: FC = () => {
             paddingTop: 12,
             marginBottom: 24,
           }}
-          mode="ios"
-        >
+          mode="ios">
           <IonText color="primary">
             <span
               style={{
                 fontSize: 16,
                 marginInline: 12,
                 fontWeight: "bold",
-              }}
-            >
+              }}>
               Recycling History
             </span>
           </IonText>
@@ -188,13 +178,12 @@ const Record: FC = () => {
             marginLeft: "50%",
             transform: "translate(-50%)",
             marginBottom: 24,
-          }}
-        >
+          }}>
           Done
         </IonButton>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Record;
+export default Record
